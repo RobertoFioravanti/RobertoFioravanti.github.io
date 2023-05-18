@@ -1,8 +1,4 @@
----
-title: Features
-author: Linbreux
----
-<!--Not used-->
+
 
 # Footnotes
 ```
