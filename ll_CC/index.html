@@ -172,6 +172,1737 @@
 <!-- START dist/MDwiki.min.js -->
 <script type="text/javascript">function googlemapsReady(){googlemapsLoadDone.resolve()}(function(){function a(a){this.tokens=[],this.tokens.links={},this.options=a||h.defaults,this.rules=i.normal,this.options.gfm&&(this.rules=this.options.tables?i.tables:i.gfm)}function b(a,b){if(this.options=b||h.defaults,this.links=a,this.rules=j.normal,!this.links)throw new Error("Tokens array requires a `links` property.");this.options.gfm?this.rules=this.options.breaks?j.breaks:j.gfm:this.options.pedantic&&(this.rules=j.pedantic)}function c(a){this.tokens=[],this.token=null,this.options=a||h.defaults}function d(a,b){return a.replace(b?/&/g:/&(?!#?\w+;)/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;")}function e(a,b){return a=a.source,b=b||"",function c(d,e){return d?(e=e.source||e,e=e.replace(/(^|[^\[])\^/g,"$1"),a=a.replace(d,e),c):new RegExp(a,b)}}function f(){}function g(a){for(var b,c,d=1;d<arguments.length;d++){b=arguments[d];for(c in b)Object.prototype.hasOwnProperty.call(b,c)&&(a[c]=b[c])}return a}function h(b,e,f){if(f||"function"==typeof e){f||(f=e,e=null),e&&(e=g({},h.defaults,e));var i=a.lex(i,e),j=e.highlight,k=0,l=i.length,m=0;if(!j||j.length<3)return f(null,c.parse(i,e));for(var n=function(){delete e.highlight;var a=c.parse(i,e);return e.highlight=j,f(null,a)};l>m;m++)!function(a){return"code"===a.type?(k++,j(a.text,a.lang,function(b,c){return null==c||c===a.text?--k||n():(a.text=c,a.escaped=!0,void(--k||n()))})):void 0}(i[m])}else try{return e&&(e=g({},h.defaults,e)),c.parse(a.lex(b,e),e)}catch(o){if(o.message+="\nPlease report this to https://github.com/chjj/marked.",(e||h.defaults).silent)return"<p>An error occured:</p><pre>"+d(o.message+"",!0)+"</pre>";throw o}}var i={newline:/^\n+/,code:/^( {4}[^\n]+\n*)+/,fences:f,hr:/^( *[-*_]){3,} *(?:\n+|$)/,heading:/^ *(#{1,6}) *([^\n]+?) *#* *(?:\n+|$)/,nptable:f,lheading:/^([^\n]+)\n *(=|-){3,} *\n*/,blockquote:/^( *>[^\n]+(\n[^\n]+)*\n*)+/,list:/^( *)(bull) [\s\S]+?(?:hr|\n{2,}(?! )(?!\1bull )\n*|\s*$)/,html:/^ *(?:comment|closed|closing) *(?:\n{2,}|\s*$)/,def:/^ *\[([^\]]+)\]: *<?([^\s>]+)>?(?: +["(]([^\n]+)[")])? *(?:\n+|$)/,table:f,paragraph:/^((?:[^\n]+\n?(?!hr|heading|lheading|blockquote|tag|def))+)\n*/,text:/^[^\n]+/};i.bullet=/(?:[*+-]|\d+\.)/,i.item=/^( *)(bull) [^\n]*(?:\n(?!\1bull )[^\n]*)*/,i.item=e(i.item,"gm")(/bull/g,i.bullet)(),i.list=e(i.list)(/bull/g,i.bullet)("hr",/\n+(?=(?: *[-*_]){3,} *(?:\n+|$))/)(),i._tag="(?!(?:a|em|strong|small|s|cite|q|dfn|abbr|data|time|code|var|samp|kbd|sub|sup|i|b|u|mark|ruby|rt|rp|bdi|bdo|span|br|wbr|ins|del|img)\\b)\\w+(?!:/|@)\\b",i.html=e(i.html)("comment",/<!--[\s\S]*?-->/)("closed",/<(tag)[\s\S]+?<\/\1>/)("closing",/<tag(?:"[^"]*"|'[^']*'|[^'">])*?>/)(/tag/g,i._tag)(),i.paragraph=e(i.paragraph)("hr",i.hr)("heading",i.heading)("lheading",i.lheading)("blockquote",i.blockquote)("tag","<"+i._tag)("def",i.def)(),i.normal=g({},i),i.gfm=g({},i.normal,{fences:/^ *(`{3,}|~{3,}) *(\S+)? *\n([\s\S]+?)\s*\1 *(?:\n+|$)/,paragraph:/^/}),i.gfm.paragraph=e(i.paragraph)("(?!","(?!"+i.gfm.fences.source.replace("\\1","\\2")+"|")(),i.tables=g({},i.gfm,{nptable:/^ *(\S.*\|.*)\n *([-:]+ *\|[-| :]*)\n((?:.*\|.*(?:\n|$))*)\n*/,table:/^ *\|(.+)\n *\|( *[-:]+[-| :]*)\n((?: *\|.*(?:\n|$))*)\n*/}),a.rules=i,a.lex=function(b,c){var d=new a(c);return d.lex(b)},a.prototype.lex=function(a){return a=a.replace(/\r\n|\r/g,"\n").replace(/\t/g,"    ").replace(/\u00a0/g," ").replace(/\u2424/g,"\n"),this.token(a,!0)},a.prototype.token=function(a,b){for(var c,d,e,f,g,h,j,k,l,a=a.replace(/^ +$/gm,"");a;)if((e=this.rules.newline.exec(a))&&(a=a.substring(e[0].length),e[0].length>1&&this.tokens.push({type:"space"})),e=this.rules.code.exec(a))a=a.substring(e[0].length),e=e[0].replace(/^ {4}/gm,""),this.tokens.push({type:"code",text:this.options.pedantic?e:e.replace(/\n+$/,"")});else if(e=this.rules.fences.exec(a))a=a.substring(e[0].length),this.tokens.push({type:"code",lang:e[2],text:e[3]});else if(e=this.rules.heading.exec(a))a=a.substring(e[0].length),this.tokens.push({type:"heading",depth:e[1].length,text:e[2]});else if(b&&(e=this.rules.nptable.exec(a))){for(a=a.substring(e[0].length),h={type:"table",header:e[1].replace(/^ *| *\| *$/g,"").split(/ *\| */),align:e[2].replace(/^ *|\| *$/g,"").split(/ *\| */),cells:e[3].replace(/\n$/,"").split("\n")},k=0;k<h.align.length;k++)h.align[k]=/^ *-+: *$/.test(h.align[k])?"right":/^ *:-+: *$/.test(h.align[k])?"center":/^ *:-+ *$/.test(h.align[k])?"left":null;for(k=0;k<h.cells.length;k++)h.cells[k]=h.cells[k].split(/ *\| */);this.tokens.push(h)}else if(e=this.rules.lheading.exec(a))a=a.substring(e[0].length),this.tokens.push({type:"heading",depth:"="===e[2]?1:2,text:e[1]});else if(e=this.rules.hr.exec(a))a=a.substring(e[0].length),this.tokens.push({type:"hr"});else if(e=this.rules.blockquote.exec(a))a=a.substring(e[0].length),this.tokens.push({type:"blockquote_start"}),e=e[0].replace(/^ *> ?/gm,""),this.token(e,b),this.tokens.push({type:"blockquote_end"});else if(e=this.rules.list.exec(a)){for(a=a.substring(e[0].length),f=e[2],this.tokens.push({type:"list_start",ordered:f.length>1}),e=e[0].match(this.rules.item),c=!1,l=e.length,k=0;l>k;k++)h=e[k],j=h.length,h=h.replace(/^ *([*+-]|\d+\.) +/,""),~h.indexOf("\n ")&&(j-=h.length,h=this.options.pedantic?h.replace(/^ {1,4}/gm,""):h.replace(new RegExp("^ {1,"+j+"}","gm"),"")),this.options.smartLists&&k!==l-1&&(g=i.bullet.exec(e[k+1])[0],f===g||f.length>1&&g.length>1||(a=e.slice(k+1).join("\n")+a,k=l-1)),d=c||/\n\n(?!\s*$)/.test(h),k!==l-1&&(c="\n"===h[h.length-1],d||(d=c)),this.tokens.push({type:d?"loose_item_start":"list_item_start"}),this.token(h,!1),this.tokens.push({type:"list_item_end"});this.tokens.push({type:"list_end"})}else if(e=this.rules.html.exec(a))a=a.substring(e[0].length),this.tokens.push({type:this.options.sanitize?"paragraph":"html",pre:"pre"===e[1]||"script"===e[1],text:e[0]});else if(b&&(e=this.rules.def.exec(a)))a=a.substring(e[0].length),this.tokens.links[e[1].toLowerCase()]={href:e[2],title:e[3]};else if(b&&(e=this.rules.table.exec(a))){for(a=a.substring(e[0].length),h={type:"table",header:e[1].replace(/^ *| *\| *$/g,"").split(/ *\| */),align:e[2].replace(/^ *|\| *$/g,"").split(/ *\| */),cells:e[3].replace(/(?: *\| *)?\n$/,"").split("\n")},k=0;k<h.align.length;k++)h.align[k]=/^ *-+: *$/.test(h.align[k])?"right":/^ *:-+: *$/.test(h.align[k])?"center":/^ *:-+ *$/.test(h.align[k])?"left":null;for(k=0;k<h.cells.length;k++)h.cells[k]=h.cells[k].replace(/^ *\| *| *\| *$/g,"").split(/ *\| */);this.tokens.push(h)}else if(b&&(e=this.rules.paragraph.exec(a)))a=a.substring(e[0].length),this.tokens.push({type:"paragraph",text:"\n"===e[1][e[1].length-1]?e[1].slice(0,-1):e[1]});else if(e=this.rules.text.exec(a))a=a.substring(e[0].length),this.tokens.push({type:"text",text:e[0]});else if(a)throw new Error("Infinite loop on byte: "+a.charCodeAt(0));return this.tokens};var j={escape:/^\\([\\`*{}\[\]()#+\-.!_>])/,autolink:/^<([^ >]+(@|:\/)[^ >]+)>/,url:f,tag:/^<!--[\s\S]*?-->|^<\/?\w+(?:"[^"]*"|'[^']*'|[^'">])*?>/,link:/^!?\[(inside)\]\(href\)/,reflink:/^!?\[(inside)\]\s*\[([^\]]*)\]/,nolink:/^!?\[((?:\[[^\]]*\]|[^\[\]])*)\]/,strong:/^__([\s\S]+?)__(?!_)|^\*\*([\s\S]+?)\*\*(?!\*)/,em:/^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,code:/^(`+)\s*([\s\S]*?[^`])\s*\1(?!`)/,br:/^ {2,}\n(?!\s*$)/,del:f,text:/^[\s\S]+?(?=[\\<!\[_*`]| {2,}\n|$)/};j._inside=/(?:\[[^\]]*\]|[^\]]|\](?=[^\[]*\]))*/,j._href=/\s*<?(.*?)>?(?:\s+['"]([\s\S]*?)['"])?\s*/,j.link=e(j.link)("inside",j._inside)("href",j._href)(),j.reflink=e(j.reflink)("inside",j._inside)(),j.normal=g({},j),j.pedantic=g({},j.normal,{strong:/^__(?=\S)([\s\S]*?\S)__(?!_)|^\*\*(?=\S)([\s\S]*?\S)\*\*(?!\*)/,em:/^_(?=\S)([\s\S]*?\S)_(?!_)|^\*(?=\S)([\s\S]*?\S)\*(?!\*)/}),j.gfm=g({},j.normal,{escape:e(j.escape)("])","~|])")(),url:/^(https?:\/\/[^\s<]+[^<.,:;"')\]\s])/,del:/^~~(?=\S)([\s\S]*?\S)~~/,text:e(j.text)("]|","~]|")("|","|https?://|")()}),j.breaks=g({},j.gfm,{br:e(j.br)("{2,}","*")(),text:e(j.gfm.text)("{2,}","*")()}),b.rules=j,b.output=function(a,c,d){var e=new b(c,d);return e.output(a)},b.prototype.output=function(a){for(var b,c,e,f,g="";a;)if(f=this.rules.escape.exec(a))a=a.substring(f[0].length),g+=f[1];else if(f=this.rules.autolink.exec(a))a=a.substring(f[0].length),"@"===f[2]?(c=this.mangle(":"===f[1][6]?f[1].substring(7):f[1]),e=this.mangle("mailto:")+c):(c=d(f[1]),e=c),g+='<a href="'+e+'">'+c+"</a>";else if(f=this.rules.url.exec(a))a=a.substring(f[0].length),c=d(f[1]),e=c,g+='<a href="'+e+'">'+c+"</a>";else if(f=this.rules.tag.exec(a))a=a.substring(f[0].length),g+=this.options.sanitize?d(f[0]):f[0];else if(f=this.rules.link.exec(a))a=a.substring(f[0].length),g+=this.outputLink(f,{href:f[2],title:f[3]});else if((f=this.rules.reflink.exec(a))||(f=this.rules.nolink.exec(a))){if(a=a.substring(f[0].length),b=(f[2]||f[1]).replace(/\s+/g," "),b=this.links[b.toLowerCase()],!b||!b.href){g+=f[0][0],a=f[0].substring(1)+a;continue}g+=this.outputLink(f,b)}else if(f=this.rules.strong.exec(a))a=a.substring(f[0].length),g+="<strong>"+this.output(f[2]||f[1])+"</strong>";else if(f=this.rules.em.exec(a))a=a.substring(f[0].length),g+="<em>"+this.output(f[2]||f[1])+"</em>";else if(f=this.rules.code.exec(a))a=a.substring(f[0].length),g+="<code>"+d(f[2],!0)+"</code>";else if(f=this.rules.br.exec(a))a=a.substring(f[0].length),g+="<br>";else if(f=this.rules.del.exec(a))a=a.substring(f[0].length),g+="<del>"+this.output(f[1])+"</del>";else if(f=this.rules.text.exec(a))a=a.substring(f[0].length),g+=d(f[0]);else if(a)throw new Error("Infinite loop on byte: "+a.charCodeAt(0));return g},b.prototype.outputLink=function(a,b){return"!"!==a[0][0]?'<a href="'+d(b.href)+'"'+(b.title?' title="'+d(b.title)+'"':"")+">"+this.output(a[1])+"</a>":'<img src="'+d(b.href)+'" alt="'+d(a[1])+'"'+(b.title?' title="'+d(b.title)+'"':"")+">"},b.prototype.smartypants=function(a){return this.options.smartypants?a.replace(/--/g,"—").replace(/'([^']*)'/g,"‘$1’").replace(/"([^"]*)"/g,"“$1”").replace(/\.{3}/g,"…"):a},b.prototype.mangle=function(a){for(var b,c="",d=a.length,e=0;d>e;e++)b=a.charCodeAt(e),Math.random()>.5&&(b="x"+b.toString(16)),c+="&#"+b+";";return c},c.parse=function(a,b){var d=new c(b);return d.parse(a)},c.prototype.parse=function(a){this.inline=new b(a.links,this.options),this.tokens=a.reverse();for(var c="";this.next();)c+=this.tok();return c},c.prototype.next=function(){return this.token=this.tokens.pop()},c.prototype.peek=function(){return this.tokens[this.tokens.length-1]||0},c.prototype.parseText=function(){for(var a=this.token.text;"text"===this.peek().type;)a+="\n"+this.next().text;return this.inline.output(a)},c.prototype.tok=function(){switch(this.token.type){case"space":return"";case"hr":return"<hr>\n";case"heading":return"<h"+this.token.depth+">"+this.inline.output(this.token.text)+"</h"+this.token.depth+">\n";case"code":if(this.options.highlight){var a=this.options.highlight(this.token.text,this.token.lang);null!=a&&a!==this.token.text&&(this.token.escaped=!0,this.token.text=a)}return this.token.escaped||(this.token.text=d(this.token.text,!0)),"<pre><code"+(this.token.lang?' class="'+this.options.langPrefix+this.token.lang+'"':"")+">"+this.token.text+"</code></pre>\n";case"table":var b,c,e,f,g,h="";for(h+="<thead>\n<tr>\n",c=0;c<this.token.header.length;c++)b=this.inline.output(this.token.header[c]),h+=this.token.align[c]?'<th align="'+this.token.align[c]+'">'+b+"</th>\n":"<th>"+b+"</th>\n";for(h+="</tr>\n</thead>\n",h+="<tbody>\n",c=0;c<this.token.cells.length;c++){for(e=this.token.cells[c],h+="<tr>\n",g=0;g<e.length;g++)f=this.inline.output(e[g]),h+=this.token.align[g]?'<td align="'+this.token.align[g]+'">'+f+"</td>\n":"<td>"+f+"</td>\n";h+="</tr>\n"}return h+="</tbody>\n","<table>\n"+h+"</table>\n";case"blockquote_start":for(var h="";"blockquote_end"!==this.next().type;)h+=this.tok();return"<blockquote>\n"+h+"</blockquote>\n";case"list_start":for(var i=this.token.ordered?"ol":"ul",h="";"list_end"!==this.next().type;)h+=this.tok();return"<"+i+">\n"+h+"</"+i+">\n";case"list_item_start":for(var h="";"list_item_end"!==this.next().type;)h+="text"===this.token.type?this.parseText():this.tok();return"<li>"+h+"</li>\n";case"loose_item_start":for(var h="";"list_item_end"!==this.next().type;)h+=this.tok();return"<li>"+h+"</li>\n";case"html":return this.token.pre||this.options.pedantic?this.token.text:this.inline.output(this.token.text);case"paragraph":return"<p>"+this.inline.output(this.token.text)+"</p>\n";case"text":return"<p>"+this.parseText()+"</p>\n"}},f.exec=f,h.options=h.setOptions=function(a){return g(h.defaults,a),h},h.defaults={gfm:!0,tables:!0,breaks:!1,pedantic:!1,sanitize:!1,smartLists:!1,silent:!1,highlight:null,langPrefix:"lang-"},h.Parser=c,h.parser=c.parse,h.Lexer=a,h.lexer=a.lex,h.InlineLexer=b,h.inlineLexer=b.output,h.parse=h,"object"==typeof exports?module.exports=h:"function"==typeof define&&define.amd?define(function(){return h}):this.marked=h}).call(function(){return this||("undefined"!=typeof window?window:global)}()),function(a){"use strict";a("html").addClass("md-hidden-load"),a.md=function(b){return a.md.publicMethods[b]?a.md.publicMethods[b].apply(this,Array.prototype.slice.call(arguments,1)):void a.error("Method "+b+" does not exist on jquery.md")},a.md.config={title:null,useSideMenu:!0,lineBreaks:"gfm",additionalFooterText:"",anchorCharacter:"&para;",tocAnchor:"[ &uarr; ]"},a.md.gimmicks=[],a.md.stages=[],a.md.mainHref="",a.md.inPageAnchor="",a.md.loglevel={TRACE:10,DEBUG:20,INFO:30,WARN:40,ERROR:50,FATAL:60},a.md.logThreshold=a.md.loglevel.WARN}(jQuery),function(a){"use strict";a.md.getLogger=function(){var b=a.md.loglevel,c=function(c){var d=b[c];return function(b){a.md.logThreshold<=d&&console.log("["+c+"] "+b)}},d={};return d.trace=c("TRACE"),d.debug=c("DEBUG"),d.info=c("INFO"),d.warn=c("WARN"),d.error=c("ERROR"),d.fatal=c("FATAL"),d}}(jQuery),function(a){"use strict";var b=a.md.getLogger();a.Stage=function(c){var d=a.extend(a.Deferred(),{});return d.name=c,d.events=[],d.started=!1,d.reset=function(){d.complete=a.Deferred(),d.outstanding=[]},d.reset(),d.subscribe=function(b){d.started&&a.error("Subscribing to stage which already started!"),d.events.push(b)},d.unsubscribe=function(a){d.events.remove(a)},d.executeSubscribedFn=function(e){var f=a.Deferred();d.outstanding.push(f),a.md.util.wait(2500).done(function(){"resolved"!==f.state()&&(b.fatal("Timeout reached for done callback in stage: "+d.name+". Did you forget a done() call in a .subscribe() ?"),b.fatal("stage "+c+" failed running subscribed function: "+e))});var g=function(){f.resolve()};e(g)},d.run=function(){d.started=!0,a(d.events).each(function(a,b){d.executeSubscribedFn(b)}),0===d.outstanding.length&&d.resolve(),a.when.apply(a,d.outstanding).done(function(){d.resolve()}).fail(function(){d.resolve()})},d.done(function(){b.debug("stage "+d.name+" completed successfully.")}),d.fail(function(){b.debug("stage "+d.name+" completed with errors!")}),d}}(jQuery),function(a){"use strict";function b(){a.md.stages=[a.Stage("init"),a.Stage("load"),a.Stage("transform"),a.Stage("ready"),a.Stage("skel_ready"),a.Stage("bootstrap"),a.Stage("pregimmick"),a.Stage("gimmick"),a.Stage("postgimmick"),a.Stage("all_ready"),a.Stage("final_tests")],a.md.stage=function(b){var c=a.grep(a.md.stages,function(a){return a.name===b});return 0!==c.length?c[0]:void a.error("A stage by name "+b+"  does not exist")}}function c(){var b=a.md.stages;a.md.stages=[],a(b).each(function(b,c){a.md.stages.push(a.Stage(c.name))})}function d(b){var c={gfm:!0,tables:!0,breaks:!0};"original"===a.md.config.lineBreaks?c.breaks=!1:"gfm"===a.md.config.lineBreaks&&(c.breaks=!0),marked.setOptions(c);var d=marked(b);return d}function e(){var b="";a.md.stage("init").subscribe(function(c){var d={url:a.md.mainHref,dataType:"text"};a.ajax(d).done(function(a){b=a,c()}).fail(function(){var b=a.md.getLogger();b.fatal("Could not get "+a.md.mainHref),c()})}),a.md.stage("transform").subscribe(function(b){var c=a.md.mainHref.lastIndexOf("/"),d=a.md.mainHref.substring(0,c+1);a.md.baseUrl=d,b()}),a.md.stage("transform").subscribe(function(c){var e=d(b);a("#md-content").html(e),b="";var g=a.Deferred();f(g),g.always(function(){c()})})}function f(b){function c(){return a("a").filter(function(){var b=a(this).attr("href"),c=a(this).toptext(),d=a.md.util.hasMarkdownFileExtension(b),e="include"===c,f=c.startsWith("preview:");return(e||f)&&d})}function e(b,c){function d(a){return 3===a.nodeType}var e=0,f=[];return b.each(function(a,b){c>e&&(f.push(b),d(b)||e++)}),a(f)}var f=c(),g=a.md.util.countDownLatch(f.length);g.always(function(){b.resolve()}),f.each(function(b,c){var f=a(c),h=f.attr("href"),i=f.toptext();a.ajax({url:h,dataType:"text"}).done(function(b){var c=a(d(b));if(i.startsWith("preview:")){var g=parseInt(i.substring(8),10)||3,j=e(c,g);j.last().append('<a href="'+h+'"> ...read more &#10140;</a>'),j.insertBefore(f.parent("p").eq(0)),f.remove()}else c.insertAfter(f.parents("p")),f.remove()}).always(function(){g.countDown()})})}function g(a){return a?a.lastIndexOf("data:")>=0?!0:a.startsWith("mailto:")?!0:a.startsWith("file:")?!0:a.startsWith("ftp:")?!0:void 0:!1}function h(b,c){var d=a(b);void 0===c&&(c=""),d.find("a").not("#md-menu a").filter(function(){var b=a(this),c=b.attr("href");c&&0!==c.length||b.removeAttr("href")}),d.find("a, img").each(function(b,d){function e(b){return a.md.util.hasMarkdownFileExtension(b)?"#!"+b:b}var f=a(d),h=!1,i="href";f.attr(i)||(h=!0,i="src");var j=f.attr(i);if(!(j&&j.lastIndexOf("#!")>=0||g(j)||(h||!j.startsWith("#")||j.startsWith("#!")||f.click(function(b){b.preventDefault(),a.md.scrollToInPageAnchor(j)}),!a.md.util.isRelativeUrl(j)||h&&!a.md.util.isRelativePath(j)||!h&&a.md.util.isGimmickLink(f)))){var k=c+j;h?f.attr(i,k):a.md.util.isRelativePath(j)?f.attr(i,e(k)):f.attr(i,e(j))}})}function i(){a.md.stage("init").subscribe(function(b){a.md.NavigationDfd.done(function(){b()}).fail(function(){b()})}),a.md.stage("transform").subscribe(function(b){if(""===r){var c=a.md.getLogger();return c.info("no navgiation.md found, not using a navbar"),void b()}var d=marked(r),e=a("<div>"+d+"</div>");e.each(function(b,c){"SCRIPT"===c.tagName&&a("script").first().before(c)});var f=e.eq(0);f.find("p").each(function(b,c){var d=a(c);d.replaceWith(d.html())}),a("#md-menu").append(f.html()),b()}),a.md.stage("bootstrap").subscribe(function(b){h(a("#md-menu")),b()}),a.md.stage("postgimmick").subscribe(function(b){var c=a("#md-menu a").length,d=a("#md-menu .navbar-brand").eq(0).toptext().trim().length>0;!d&&1>=c&&a("#md-menu").hide(),b()})}function j(){a.md.stage("init").subscribe(function(b){a.md.ConfigDfd.done(function(){b()}).fail(function(){var c=a.md.getLogger();c.info("No config.json found, using default settings"),b()})})}function k(){a.md.stage("init").subscribe(function(b){a("#md-all").empty();var c='<div id="md-body"><div id="md-title"></div><div id="md-menu"></div><div id="md-content"></div></div>';a("#md-all").prepend(a(c)),b()})}function l(b){a.md.mainHref=b,e(),k(),a.md.stage("ready").subscribe(function(b){a.md.initializeGimmicks(),a.md.registerLinkGimmicks(),b()}),a.each(a.md.gimmicks,function(b,c){void 0!==c.load&&a.md.stage("load").subscribe(function(a){c.load(),a()})}),a.md.stage("ready").subscribe(function(b){a.md("createBasicSkeleton"),b()}),a.md.stage("bootstrap").subscribe(function(b){a.mdbootstrap("bootstrapify"),h(a("#md-content"),a.md.baseUrl),b()}),m()}function m(){a.md.stage("init").done(function(){a.md.stage("load").run()}),a.md.stage("load").done(function(){a.md.stage("transform").run()}),a.md.stage("transform").done(function(){a.md.stage("ready").run()}),a.md.stage("ready").done(function(){a.md.stage("skel_ready").run()}),a.md.stage("skel_ready").done(function(){a.md.stage("bootstrap").run()}),a.md.stage("bootstrap").done(function(){a.md.stage("pregimmick").run()}),a.md.stage("pregimmick").done(function(){a.md.stage("gimmick").run()}),a.md.stage("gimmick").done(function(){a.md.stage("postgimmick").run()}),a.md.stage("postgimmick").done(function(){a.md.stage("all_ready").run()}),a.md.stage("all_ready").done(function(){a("html").removeClass("md-hidden-load"),"function"==typeof window.callPhantom&&window.callPhantom({}),a.md.stage("final_tests").run()}),a.md.stage("final_tests").done(function(){c(),a("body").append('<span id="start-tests"></span>'),a("#start-tests").hide()}),a.md.stage("init").run()}function n(){var b;b=window.location.hash.substring(window.location.hash.startsWith("#!")?2:1),b=decodeURIComponent(b);var c=b.indexOf("#");-1!==c?(a.md.inPageAnchor=b.substring(c+1),a.md.mainHref=b.substring(0,c)):a.md.mainHref=b}function o(){var a="",b=window.location.hash||"";""===b||"#"===b||"#!"===b?a="#!index.md":b.startsWith("#!")&&b.endsWith("/")&&(a=b+"index.md"),a&&(window.location.hash=a)}var p=a.md.getLogger();b();var q={};a.md.publicMethods=a.extend({},a.md.publicMethods,q);var r="";a.md.NavigationDfd=a.Deferred();var s={url:"navigation.md",dataType:"text"};a.ajax(s).done(function(b){r=b,a.md.NavigationDfd.resolve()}).fail(function(){a.md.NavigationDfd.reject()}),a.md.ConfigDfd=a.Deferred(),a.ajax({url:"config.json",dataType:"text"}).done(function(b){try{var c=JSON.parse(b);a.md.config=a.extend(a.md.config,c),p.info("Found a valid config.json file, using configuration")}catch(d){p.error("config.json was not JSON parsable: "+d)}a.md.ConfigDfd.resolve()}).fail(function(b,c){p.error("unable to retrieve config.json: "+c),a.md.ConfigDfd.reject()}),a(document).ready(function(){j(),i(),n(),o(),a(window).bind("hashchange",function(){window.location.reload(!1)}),l(a.md.mainHref)})}(jQuery),function(a){var b={isRelativeUrl:function(a){return void 0===a?!1:-1===a.indexOf("://")?!0:!1},isRelativePath:function(a){return void 0===a?!1:a.startsWith("/")?!1:!0},isGimmickLink:function(a){return-1!==a.toptext().indexOf("gimmick:")?!0:!1},hasMarkdownFileExtension:function(b){var c=[".md",".markdown",".mdown"],d=!1,e=b.toLowerCase().split("#")[0];return a(c).each(function(a,b){e.toLowerCase().endsWith(b)&&(d=!0)}),d},wait:function(b){return a.Deferred(function(a){setTimeout(a.resolve,b)})}};a.md.util=a.extend({},a.md.util,b),"function"!=typeof String.prototype.startsWith&&(String.prototype.startsWith=function(a){return this.slice(0,a.length)===a}),"function"!=typeof String.prototype.endsWith&&(String.prototype.endsWith=function(a){return this.slice(this.length-a.length,this.length)===a}),a.fn.extend({toptext:function(){return this.clone().children().remove().end().text()}}),a.expr[":"].icontains=a.expr.createPseudo(function(b){return function(c){return a(c).toptext().toUpperCase().indexOf(b.toUpperCase())>=0}}),a.md.util.getInpageAnchorText=function(a){var b=a.replace(/ /g,"_");return b},a.md.util.getInpageAnchorHref=function(b,c){c=c||a.md.mainHref;var d=a.md.util.getInpageAnchorText(b);return"#!"+c+"#"+d},a.md.util.repeatUntil=function(b,c,d){function e(b,c,d){return 0===d?void f.reject():c()?void f.resolve():void a.md.util.wait(b).always(function(){e(b,c,d-1)})}d=d||10;var f=a.Deferred();return e(b,c,d),f},a.md.util.countDownLatch=function(b,c){c=c||0;var d=a.Deferred();return c>=b&&d.resolve(),d.capacity=b,d.countDown=function(){d.capacity--,d.capacity<=c&&d.resolve()},d}}(jQuery),function($){"use strict";function ScriptInfo(a){this.module=void 0,this.options={},this.src="",$.extend(this,a)}function LinkTrigger(a){this.trigger=void 0,this.module=void 0,this.callback=void 0,$.extend(this,a)}function insertInlineScript(a){var b=document.createElement("script");b.type="text/javascript",b.text=a,document.body.appendChild(b)}function checkLicense(a,b){if(-1===$.inArray(a,licenses)){var c=JSON.stringify(licenses);log.warn("license "+a+" is not known."),log.warn("Known licenses:"+c)}else"OTHER"===a&&log.warn("WARNING: Module "+b.name+" uses a script with unknown license. This may be a GPL license violation if this website is publically available!")}function loadScript(a){var b=a.module,c=a.src,d=a.options,e=d.license||"OTHER",f=d.loadstage||"skel_ready",g=d.finishstage||"pregimmick",h=d.callback,i=$.Deferred();checkLicense(e,b),log.debug("subscribing "+b.name+" to start: "+f+" end in: "+g),$.md.stage(f).subscribe(function(a){c.startsWith("//")||c.startsWith("http")?$.getScript(c,function(){void 0!==h?h(a):(log.debug("module"+b.name+" script load done: "+c),a()),i.resolve()}):(insertInlineScript(c),log.debug("module"+b.name+" script inject done"),i.resolve(),a())}),$.md.stage(g).subscribe(function(a){i.done(function(){a()})})}function findActiveLinkTrigger(){var a=$("a:icontains(gimmick:)");a.each(function(a,b){var c=getGimmickLinkParts($(b));-1===activeLinkTriggers.indexOf(c.trigger)&&activeLinkTriggers.push(c.trigger)}),log.debug("Scanning for required gimmick links: "+JSON.stringify(activeLinkTriggers))}function loadRequiredScripts(){$.each(activeLinkTriggers,function(a,b){var c=findModuleByTrigger(b);if(void 0===c)return void log.error('Gimmick link: "'+b+'" found but no suitable gimmick loaded');var d=registeredScripts.filter(function(a){return a.module.name===c.name})[0];void 0!==d&&loadScript(d)})}function findModuleByTrigger(a){var b;return $.each(linkTriggers,function(c,d){d.trigger===a&&(b=d.module)}),b}function getGimmickLinkParts($link){var link_text=$.trim($link.toptext());if(null===link_text.match(/gimmick:/i))return null;var href=$.trim($link.attr("href")),r=new RegExp(/gimmick:\s*([^(\s]*)\s*(\(\s*{?(.*)\s*}?\s*\))*/i),matches=r.exec(link_text);if(null===matches||void 0===matches[1])return $.error("Error matching a gimmick: "+link_text),null;var trigger=matches[1].toLowerCase(),args=null;if(void 0!==matches[2]){var params=$.trim(matches[3].toString());"}"===params.charAt(params.length-1)&&(params=params.substring(0,params.length-1)),params="({"+params+"})",params=params.replace(/'/g,'"');try{args=eval(params)}catch(err){log.error("error parsing argument of gimmick: "+link_text+"giving error: "+err)}}return{trigger:trigger,options:args,href:href}}function runGimmicksOnce(){$.each($.md.gimmicks,function(a,b){void 0!==b.once&&b.once()})}function subscribeLinkTrigger(a,b,c){log.debug("Subscribing gimmick "+c.module.name+" to stage: "+c.stage),$.md.stage(c.stage).subscribe(function(d){b.options=b.options||{},jQuery.contains(document.documentElement,a[0])||(log.error("LINK IS NOT IN THE DOM ANYMORE: "),console.log(a)),log.debug("Running gimmick "+c.module.name),c.callback(a,b.options,b.href,d),d()})}$.md.registerGimmick=function(a){$.md.gimmicks.push(a)},$.md.registerScript=function(a,b,c){var d=new ScriptInfo({module:a,src:b,options:c});registeredScripts.push(d)},$.md.registerCss=function(a,b,c){var d=c.license,e=c.stage||"skel_ready",f=c.callback;checkLicense(d,a);var g='<link rel="stylesheet" href="'+b+'" type="text/css"></link>';$.md.stage(e).subscribe(function(a){$("head").append(g),void 0!==f?f(a):a()})},$.md.prepareLink=function(a,b){b=b||{};var c=window.location.protocol;return b.forceSSL?"https://"+a:b.forceHTTP?"http://"+a:"file:"===c?"http://"+a:"//"+a},$.md.linkGimmick=function(a,b,c,d){void 0===d&&(d="gimmick");var e=new LinkTrigger({trigger:b,module:a,stage:d,callback:c});linkTriggers.push(e)},$.md.triggerIsActive=function(a){return-1===activeLinkTriggers.indexOf(a)?!1:!0};var initialized=!1;$.md.initializeGimmicks=function(){findActiveLinkTrigger(),runGimmicksOnce(),loadRequiredScripts()};var log=$.md.getLogger(),activeLinkTriggers=[],registeredScripts=[],linkTriggers=[],licenses=["MIT","BSD","GPL","GPL2","GPL3","LGPL","LGPL2","APACHE2","PUBLICDOMAIN","EXCEPTION","OTHER"];$.md.registerLinkGimmicks=function(){var a=$("a:icontains(gimmick:)");a.each(function(a,b){var c=$(b),d=getGimmickLinkParts(c);$.each(linkTriggers,function(a,b){d.trigger===b.trigger&&subscribeLinkTrigger(c,d,b)})})}}(jQuery),function(a){function b(){var b;if(a.md.config.title&&a("title").text(a.md.config.title),b=a("#md-content h1").eq(0),a.trim(b.toptext()).length>0){a("#md-title").prepend(b);{b.toptext()}}else a("#md-title").remove()}function c(){a("#md-content p").each(function(){var b=a(this);if(0!==a.trim(b.text()).length){var c=b.contents().filter(function(){var b=a(this);return"A"===this.tagName&&b.find("img").length>0?!0:"IMG"===this.tagName?!0:!1}),d=e(b);b.wrapInner('<div class="md-text" />'),0!==c.length&&(c.prependTo(b),b.addClass("md-floatenv").addClass(d))}})}function d(){a(".md-floatenv").find(".md-text").each(function(){var b=a(this).find("*").eq(0);b.is("br")&&b.remove()}),a(".md-image-group").find("br").remove()}function e(b){var c=a(b),d="",e=c.contents().filter(function(){return"IMG"===this.tagName||"IFRAME"===this.tagName?!0:"A"===this.tagName?a(this).find("img").length>0:a.trim(a(this).text()).length>0}),f=e[0];return void 0!==f&&null!==f&&(d="IMG"===f.tagName||"IFRAME"===f.tagName?"md-float-left":"A"===f.tagName&&a(f).find("img").length>0?"md-float-left":"md-float-right"),d}function f(){var b=a("p img").parents("p");b.addClass("md-image-group")}function g(){function b(){return c=a("img").filter(function(){var b=a(this).parents("a").eq(0);if(0===b.length)return!0;var c=b.attr("href");return c&&0===c.length})}var c=b();return c.each(function(){var b=a(this),c=b.attr("src"),d=b.attr("title");void 0===d&&(d=""),b.wrap('<a class="md-image-selfref" href="'+c+'" title="'+d+'"/> ')})}function h(){function b(b,c){var d=a.md.config.anchorCharacter,e=a('<span class="anchor-highlight"><a>'+d+"</a></span>");e.find("a").attr("href",c),e.hide();var f=!1;b.mouseenter(function(){f=!0,a.md.util.wait(300).then(function(){f&&e.fadeIn(200)})}),b.mouseleave(function(){f=!1,e.fadeOut(200)}),e.appendTo(b)}function c(b){if(a.md.config.useSideMenu!==!1&&"H2"===b.prop("tagName")){var c=a.md.config.tocAnchor;if(""!==c){var d=a('<a class="visible-xs visible-sm jumplink" href="#md-page-menu">'+c+"</a>");d.click(function(b){b.preventDefault(),a("body").scrollTop(a("#md-page-menu").position().top)}),0===b.parents("#md-menu").length&&d.insertAfter(b)}}}a("h1,h2,h3,h4,h5,h6").not("#md-title h1").each(function(){var d=a(this);d.addClass("md-inpage-anchor");var e=d.clone().children(".anchor-highlight").remove().end().text(),f=a.md.util.getInpageAnchorHref(e);b(d,f),c(d)})}var i={createBasicSkeleton:function(){b(),c(),g(),f(),d(),h(),a.md.stage("all_ready").subscribe(function(b){""!==a.md.inPageAnchor&&a.md.util.wait(500).then(function(){a.md.scrollToInPageAnchor(a.md.inPageAnchor)}),b()})}};a.md.publicMethods=a.extend({},a.md.publicMethods,i),a.md.scrollToInPageAnchor=function(b){b.startsWith("#")&&(b=b.substring(1,b.length));var c=!1;a(".md-inpage-anchor").each(function(){if(!c){var d=a(this),e=d.toptext(),f=a.md.util.getInpageAnchorText(e);if(b===f){this.scrollIntoView(!0);var g=a(".navbar-collapse").height()+5;window.scrollBy(0,-g+5),c=!0}}})}}(jQuery),function(a){"use strict";function b(){if(!(a("#md-menu").length<=0)){o="top";var b=a("#md-menu").children(),c="";c+='<div id="md-main-navbar" class="navbar navbar-default navbar-fixed-top" role="navigation">',c+='<div class="navbar-header">',c+='<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">',c+='<span class="sr-only">Toggle navigation</span>',c+='<span class="icon-bar"></span>',c+='<span class="icon-bar"></span>',c+='<span class="icon-bar"></span>',c+="</button>",c+='<a class="navbar-brand" href="#"></a>',c+="</div>",c+='<div class="collapse navbar-collapse navbar-ex1-collapse">',c+='<ul class="nav navbar-nav" />',c+='<ul class="nav navbar-nav navbar-right" />',c+="</div>",c+="</div>";var e=a(c);e.appendTo("#md-menu"),a("#md-menu ul.nav").eq(0).append(b),a("#md-menu").prependTo("#md-all");var f=a("#md-menu h1").toptext();a("#md-menu h1").remove(),a("a.navbar-brand").text(f),a("#md-body").css("margin-top","70px"),a.md.stage("pregimmick").subscribe(function(a){d(),a()})}}function c(){var b=a("#md-main-navbar").height()+10;a("#md-body").css("margin-top",b+"px")}function d(){var b=0,d=a.md.util.repeatUntil(40,function(){return b=a("#md-main-navbar").height(),b>35&&481>b},25);d.done(function(){b=a("#md-main-navbar").height(),c();var d=a.md.util.repeatUntil(20,function(){return b!==a("#md-main-navbar").height()
 },25);d.done(function(){c()}),a.md.util.wait(2e3).done(function(){c()})})}function e(){if(0!==a("#md-menu a").length){var c=a("#md-menu");c.find('> a[href=""]').attr("data-toggle","dropdown").addClass("dropdown-toggle").attr("href","").append('<b class="caret"/>'),c.find("ul").addClass("dropdown-menu"),c.find("ul li").addClass("dropdown"),a("#md-menu hr").each(function(b,c){var d=a(c),e=d.prev(),f=d.next();e.is("ul")&&e.length>=0&&(e.append(a('<li class="divider"/>')),d.remove(),f.is("ul")&&(f.find("li").appendTo(e),f.remove()))}),a("#md-menu ul").each(function(b,c){var d=a(c);0===d.find("li").length&&d.remove()}),a("#md-menu hr").replaceWith(a('<li class="divider-vertical"/>')),a("#md-menu > a").wrap("<li />"),a("#md-menu ul").each(function(b,c){var d=a(c);d.appendTo(d.prev()),d.parent("li").addClass("dropdown")}),a("#md-menu li.dropdown").find("h1, h2, h3").each(function(b,c){var d=a(c),e=d.toptext(),f=a('<li class="dropdown-header" />');f.text(e),d.replaceWith(f)}),b()}}function f(b){var c=a(b),d=a(window).scrollTop(),e=d+a(window).height(),f=c.offset().top,g=f+c.height();return e>=g&&f>=d}function g(){var b=a("#md-content").find("h2").clone();if(b.children().remove(),!(b.length<=1)){a("#md-content").removeClass("col-md-12"),a("#md-content").addClass("col-md-9"),a("#md-content-row").prepend('<div class="col-md-3" id="md-left-column"/>');var c=function(){var b=a("#md-left-column").css("width");a("#md-page-menu").css("width",b)};a(window).scroll(function(){c(a("#md-page-menu"));var b;a("*.md-inpage-anchor").each(function(c,d){if(void 0===b){var e=a(d);f(e)&&(b=e)}}),a("#md-page-menu a").each(function(c,d){var e=a(d);b&&e.toptext()===b.toptext()&&(a("#md-page-menu a.active").removeClass("active"),e.addClass("active"))})});var e=a('<div id="md-page-menu" />'),g=70;e.affix({offset:130}),e.css("top",g);var h=a('<div class="panel panel-default"><ul class="list-group"/></div>'),i=h.find("ul");e.append(h),b.each(function(b,c){var d=a(c),e=a('<li class="list-group-item" />'),f=a("<a />");f.attr("href",a.md.util.getInpageAnchorHref(d.toptext())),f.click(function(b){b.preventDefault();var c=a(this),d=a.md.util.getInpageAnchorText(c.toptext());a.md.scrollToInPageAnchor(d)}),f.text(d.toptext()),e.append(f),i.append(e)}),a(window).resize(function(){c(a("#md-page-menu")),d()}),a.md.stage("postgimmick").subscribe(function(a){a()}),a("#md-left-column").append(e)}}function h(){a("#md-title").wrap('<div class="container" id="md-title-container"/>'),a("#md-title").wrap('<div class="row" id="md-title-row"/>'),a("#md-menu").wrap('<div class="container" id="md-menu-container"/>'),a("#md-menu").wrap('<div class="row" id="md-menu-row"/>'),a("#md-content").wrap('<div class="container" id="md-content-container"/>'),a("#md-content").wrap('<div class="row" id="md-content-row"/>'),a("#md-body").wrap('<div class="container" id="md-body-container"/>'),a("#md-body").wrap('<div class="row" id="md-body-row"/>'),a("#md-title").addClass("col-md-12"),a("#md-content").addClass("col-md-12")}function i(){var b=a('<div class="page-header" />');a("#md-title").wrapInner(b)}function j(){if(0!==a("#md-menu").find("li").length){var b=window.location.hash;0===b.length&&(b="#!index.md");var c='li:has(a[href="'+b+'"])';a("#md-menu").find(c).addClass("active")}}function k(){var b=a("p img").parents("p");b.each(function(){function b(b,c){return d.each(function(b,d){var e=a(d),f=e.parent("a");f.length>0?f.wrap(c):e.wrap(c)})}var c=a(this),d=a(this).find("img").filter(function(){return 0===a(this).parents("a").length}).add(a(this).find("img")).addClass("img-responsive").addClass("img-thumbnail");c.hasClass("md-floatenv")?1===d.length?b(d,'<div class="col-sm-8" />'):2===d.length?b(d,'<div class="col-sm-4" />'):b(d,'<div class="col-sm-2" />'):1===d.length?b(d,'<div class="col-sm-12" />'):2===d.length?b(d,'<div class="col-sm-6" />'):3===d.length?b(d,'<div class="col-sm-4" />'):4===d.length?b(d,'<div class="col-sm-3" />'):b(d,'<div class="col-sm-2" />'),c.addClass("row")})}function l(){a("iframe.md-external").not(".md-external-nowidth").attr("width","450").css("width","450px"),a("iframe.md-external").not(".md-external-noheight").attr("height","280").css("height","280px"),a("div.md-external").not(".md-external-noheight").css("height","280px"),a("div.md-external").not(".md-external-nowidth").css("width","450px")}function m(){var b="";b+='<hr><div class="scontainer">',b+='<div class="pull-right md-copyright-footer"> ',b+='<span id="md-footer-additional"></span>',b+='Website generated with <a href="http://www.mdwiki.info">MDwiki</a> ',b+="&copy; Timo D&ouml;rr and contributors. ",b+="</div>",b+="</div>";var c=a(b);c.css("position","relative"),c.css("margin-top","1em"),a("#md-all").append(c)}function n(){var b=a.md.config.additionalFooterText;b&&a(".md-copyright-footer #md-footer-additional").html(b)}a.mdbootstrap=function(b){return a.mdbootstrap.publicMethods[b]?a.mdbootstrap.publicMethods[b].apply(this,Array.prototype.slice.call(arguments,1)):void a.error("Method "+b+" does not exist on jquery.mdbootstrap")},a.mdbootstrap.events=[],a.mdbootstrap.bind=function(b,c){a(document).bind(b,c),a.mdbootstrap.events.push(b)},a.mdbootstrap.trigger=function(b){a(document).trigger(b)};var o="",p={bootstrapify:function(){h(),e(),i(),k(),a("table").addClass("table").addClass("table-bordered"),a.md.stage("pregimmick").subscribe(function(b){a.md.config.useSideMenu!==!1&&g(),m(),n(),b()}),a.md.stage("postgimmick").subscribe(function(a){l(),j(),a()})}};a.mdbootstrap.publicMethods=a.extend({},a.mdbootstrap.publicMethods,p)}(jQuery),function(a){a.gimmicks=a.fn.gimmicks=function(b){return void 0!==b?a.fn.gimmicks.methods[b]?a.fn.gimmicks.methods[b].apply(this,Array.prototype.slice.call(arguments,1)):void a.error("Gimmick "+b+" does not exist on jQuery.gimmicks"):void 0}}(jQuery),function(a){function b(){var b=a(c());b.each(function(){var b=a(this.p),c=this.alertType;b.addClass("alert"),"note"===c?b.addClass("alert-info"):"hint"===c?b.addClass("alert-success"):"warning"===c&&b.addClass("alert-warning")})}function c(){var b=["note","beachte"],c=["achtung","attention","warnung","warning","atención","guarda","advertimiento"],d=["hint","tipp","tip","hinweis"],e=b.concat(c);e=e.concat(d);var f=[];return a("p").filter(function(){var g=a(this);a(e).each(function(e,h){var i=g.text().toLowerCase(),j=new RegExp(h+"(:|!)+.*","i"),k="none";null!==i.match(j)&&(a.inArray(h,b)>=0?k="note":a.inArray(h,c)>=0?k="warning":a.inArray(h,d)>=0&&(k="hint"),f.push({p:g,alertType:k}))})}),f}var d={name:"alerts",load:function(){a.md.stage("bootstrap").subscribe(function(a){b(),a()})}};a.md.registerGimmick(d)}(jQuery),function(a){var b={name:"colorbox",load:function(){a.md.stage("gimmick").subscribe(function(b){a.gimmicks("colorbox"),b()})}};a.md.registerGimmick(b);var c={colorbox:function(){var b;b=a(this instanceof jQuery?this:".md-image-group");var c=0;return b.each(function(){var b=a(this),d="gallery-group-"+c++;b.find("a.md-image-selfref img").parents("a").colorbox({rel:d,opacity:.75,slideshow:!0,maxWidth:"95%",maxHeight:"95%",scalePhotos:!0,photo:!0,slideshowAuto:!1})})}};a.gimmicks.methods=a.extend({},a.fn.gimmicks.methods,c)}(jQuery),function(a){"use strict";function b(b,c,d){var e=a('<div id="myCarousel" class="carousel slide"></div>'),f=a('<div class="carousel-inner"/>');e.append('<ol class="carousel-indicators" />');var g=[];a.each(d.split(","),function(b,c){g.push(a.trim(c)),e.find("ol").append('<li data-target="#myCarousel" data-slide-to="'+b+'" class="active" /');var d;d=0===b?'<div class="active item"/>':'<div class="item"/>',f.append(a(d).append('<img src="'+c+'"/>'))}),e.append(f),e.append('<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>'),e.append('<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>'),b.replaceWith(e)}var c={name:"Themes",version:a.md.version,once:function(){a.md.linkGimmick(this,"carousel",b)}};a.md.registerGimmick(c)}(jQuery),function(a){var b={name:"disqus",version:a.md.version,once:function(){a.md.linkGimmick(this,"disqus",d)}};a.md.registerGimmick(b);var c=!1,d=function(b,d){var e={identifier:""},f=a.extend(e,d),g=a('<div id="disqus_thread" class="md-external md-external-noheight md-external-nowidth" ><a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a></div>');return g.css("margin-top","2em"),b.each(function(b,d){if(c!==!0){c=!0;var e=a(d),h=e.attr("href");void 0!==h&&h.length>0&&(e.remove(),a("#md-content").append(g),a("#disqus_thread").length>0&&!function(){var a,b=window.location.href;a=f.identifier.length>0?f.identifier:b;var c=document.createElement("script");c.type="text/javascript",c.async=!0,c.src="http://"+h+".disqus.com/embed.js",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(c)}())}})}}(jQuery),function(a){function b(b,c){var d={layout:"standard",showfaces:!0},f=a.extend({},d,c);return"boxcount"===f.layout&&(f.layout="box_count"),"buttoncount"===f.layout&&(f.layout="button_count"),b.each(function(b,c){var d=a(c),g=d.attr("href");a("body").append(e);var h=a('<div class="fb-like" data-send="false" data-width="450"></div>');h.attr("data-href",g),h.attr("data-layout",f.layout),h.attr("data-show-faces",f.showfaces),d.replaceWith(h)})}var c=window.navigator.userLanguage||window.navigator.language,d=c+"_"+c.toUpperCase(),e=a('<div id="fb-root" />'),f=a.md.prepareLink("connect.facebook.net/"+d+"/all.js#xfbml=1",{forceHTTP:!0}),g='(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "'+f+'"; fjs.parentNode.insertBefore(js, fjs);}(document, "script", "facebook-jssdk"));',h={name:"FacebookLike",version:a.md.version,once:function(){a.md.linkGimmick(this,"facebooklike",b),a.md.registerScript(this,g,{license:"APACHE2",loadstage:"postgimmick",finishstage:"all_ready"})}};a.md.registerGimmick(h)}(jQuery),function(a){"use strict";function b(b,c){return b.each(function(b,d){var e=a(d),f={color:"red",position:"right"},g=a.extend({},f,c),h=g.color,i=g.position,j="https://s3.amazonaws.com/github/ribbons/forkme_";"red"===h&&(j+=i+"_red_aa0000.png"),"green"===h&&(j+=i+"_green_007200.png"),"darkblue"===h&&(j+=i+"_darkblue_121621.png"),"orange"===h&&(j+=i+"_orange_ff7600.png"),"white"===h&&(j+=i+"_white_ffffff.png"),"gray"===h&&(j+=i+"_gray_6d6d6d.png");var k=e.attr("href"),l=0,m=a('<a class="forkmeongithub" href="'+k+'"><img style="position: absolute; top: '+l+";"+i+': 0; border: 0;" src="'+j+'" alt="Fork me on GitHub"></a>');a("body").prepend(m),m.find("img").css("z-index","2000"),e.remove()})}var c={name:"forkmeongithub",version:a.md.version,once:function(){a.md.linkGimmick(this,"forkmeongithub",b)}};a.md.registerGimmick(c)}(jQuery),function(a){"use strict";function b(b,c,d){return a().lazygist("init"),b.each(function(b,c){var e=a(c),f=a('<div class="gist_here" data-id="'+d+'" />');e.replaceWith(f),f.lazygist({url_template:"https://gist.github.com/{id}.js?"})})}var c={name:"gist",once:function(){a.md.linkGimmick(this,"gist",b)}};a.md.registerGimmick(c)}(jQuery),function(a,b,c,d){"use strict";function e(b){var e,f,g;if(-1!==b.indexOf('rel="stylesheet"'))f=a(b).attr("href"),-1===a.inArray(f,k)&&(a("head").append(b),k.push(f));else if(-1!==b.indexOf('id="gist')){if(e=/gist([\d]{1,})/g.exec(b),g=e[1],g!==d){if(-1!==a.inArray(g,l))return;l.push(g),a(".gist_here[data-id="+g+"]").append(b)}}else j.apply(c,arguments)}var f,g="lazygist",h="0.2pre",i={url_template:"https://gist.github.com/{id}.js?file={file}",id:"data-id",file:"data-file"},j=c.write,k=[],l=[],m=[],n={init:function(b){return f=a.extend({},i,b),c.write=e,a.each(f,function(a,b){if("string"!=typeof b)throw new TypeError(b+" ("+typeof b+") is not a string")}),this.lazygist("load")},load:function(){return this.filter("["+f.id+"]").each(function(){var b,c=a(this).attr(f.id),e=a(this).attr(f.file);if(c!==d){if(-1!==a.inArray(c,m))return;m.push(c),b=f.url_template.replace(/\{id\}/g,c).replace(/\{file\}/g,e),a.getScript(b,function(){})}})},reset_write:function(){return c.write=j,this}};a.fn[g]=function(b){return n[b]?n[b].apply(this,Array.prototype.slice.call(arguments,1)):"object"!=typeof b&&b?void a.error("Method "+b+" does not exist on jQuery.lazygist"):n.init.apply(this,arguments)},a.fn[g].version=h}(jQuery,window,document);var googlemapsLoadDone;!function(a){function b(b,d){{var e=b;(new Date).getTime()}return e.each(function(b,e){var f=a(e),g={zoom:11,marker:!0,scrollwheel:!1,maptype:"roadmap"},h=a.extend({},g,d);void 0===h.address&&(h.address=f.attr("href"));var i="google-map-"+Math.floor(1e5*Math.random()),j=a('<div class="md-external md-external-nowidth" id="'+i+'"/>');f.replaceWith(j),c(h,i)})}function c(b,c){var d=b.maptype.toUpperCase();b.mapTypeId=google.maps.MapTypeId[d];var e=new google.maps.Geocoder;e.geocode({address:b.address},function(d,e){if("OK"===e){var f=d[0].geometry.location,g=a.extend({},b,{center:f}),h=new google.maps.Map(document.getElementById(c),g);if(g.marker===!0){new google.maps.Marker({position:f,map:h})}}})}var d="http://maps.google.com/maps/api/js?sensor=false&callback=googlemapsReady",e={name:"googlemaps",version:a.md.version,once:function(){googlemapsLoadDone=a.Deferred(),a.md.linkGimmick(this,"googlemaps",b),a.md.registerScript(this,d,{license:"EXCEPTION",loadstage:"skel_ready",finishstage:"bootstrap"}),a.md.stage("bootstrap").subscribe(function(b){a.md.triggerIsActive("googlemaps")?googlemapsLoadDone.done(function(){b()}):b()})}};a.md.registerGimmick(e)}(jQuery),function(a){function b(){var b=a("pre code[class^=lang-]");return b.each(function(){var b=a(this),c=b.attr("class"),d=c.substring(5);b.removeClass(c),b.addClass(d);hljs.highlightBlock(b[0])})}var c={name:"highlight",load:function(){a.md.stage("gimmick").subscribe(function(a){b(),a()})}};a.md.registerGimmick(c)}(jQuery),function(a){"use strict";function b(b,c){return b.each(function(b,d){var e=a(d),f=e.attr("href"),g=a('<iframe class="col-md-12" style="border: 0px solid red; height: 650px;"></iframe>');if(g.attr("src",f),e.replaceWith(g),c.width&&g.css("width",c.width),c.height)g.css("height",c.height);else{var h=function(){var b=g.offset(),c=a(window).height(),d=c-b.top-5;g.height(d)};g.load(function(){h()}),a(window).resize(function(){h()})}})}var c={name:"iframe",version:a.md.version,once:function(){a.md.linkGimmick(this,"iframe",b)}};a.md.registerGimmick(c)}(jQuery),function(a){function b(b){b.remove();var c=document.createElement("script");c.type="text/javascript",c.src=a.md.prepareLink("cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML",{forceHTTP:!0}),document.getElementsByTagName("head")[0].appendChild(c)}var c={name:"math",once:function(){a.md.linkGimmick(this,"math",b)}};a.md.registerGimmick(c)}(jQuery),function(a){"use strict";var b=[{name:"bootstrap",url:"netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"},{name:"amelia",url:"netdna.bootstrapcdn.com/bootswatch/3.0.0/amelia/bootstrap.min.css"},{name:"cerulean",url:"netdna.bootstrapcdn.com/bootswatch/3.0.0/cerulean/bootstrap.min.css"},{name:"cosmo",url:"netdna.bootstrapcdn.com/bootswatch/3.0.0/cosmo/bootstrap.min.css"},{name:"cyborg",url:"netdna.bootstrapcdn.com/bootswatch/3.0.0/cyborg/bootstrap.min.css"},{name:"flatly",url:"netdna.bootstrapcdn.com/bootswatch/3.0.0/flatly/bootstrap.min.css"},{name:"journal",url:"netdna.bootstrapcdn.com/bootswatch/3.0.0/journal/bootstrap.min.css"},{name:"readable",url:"netdna.bootstrapcdn.com/bootswatch/3.0.0/readable/bootstrap.min.css"},{name:"simplex",url:"netdna.bootstrapcdn.com/bootswatch/3.0.0/simplex/bootstrap.min.css"},{name:"slate",url:"netdna.bootstrapcdn.com/bootswatch/3.0.0/slate/bootstrap.min.css"},{name:"spacelab",url:"netdna.bootstrapcdn.com/bootswatch/3.0.0/spacelab/bootstrap.min.css"},{name:"united",url:"netdna.bootstrapcdn.com/bootswatch/3.0.0/united/bootstrap.min.css"},{name:"yeti",url:"netdna.bootstrapcdn.com/bootswatch/3.0.2/yeti/bootstrap.min.css"}],c=!1,d={name:"Themes",version:a.md.version,once:function(){a.md.linkGimmick(this,"themechooser",h,"skel_ready"),a.md.linkGimmick(this,"theme",g)}};a.md.registerGimmick(d);var e=a.md.getLogger(),f=function(c){if(c.inverse=c.inverse||!1,void 0===c.url){if(!c.name)return void e.error("Theme name must be given!");var d=b.filter(function(a){return a.name===c.name})[0];if(!d)return void e.error("Theme "+name+" not found, removing link");c=a.extend(c,d)}a('link[rel=stylesheet][href*="netdna.bootstrapcdn.com"]').remove();var f=a("style[id*=bootstrap]").length>0;"bootstrap"===c.name&&f||(a("style[id*=bootstrap]").remove(),a('<link rel="stylesheet" type="text/css">').attr("href",a.md.prepareLink(c.url)).appendTo("head")),c.inverse===!0?(a("#md-main-navbar").removeClass("navbar-default"),a("#md-main-navbar").addClass("navbar-inverse")):(a("#md-main-navbar").addClass("navbar-default"),a("#md-main-navbar").removeClass("navbar-inverse"))},g=function(b,d,e){d.name=d.name||e,b.each(function(b,e){a.md.stage("postgimmick").subscribe(function(b){a(e);void 0!==window.localStorage.theme&&c||f(d),b()})}),b.remove()},h=function(d,e,f){return c=!0,a.md.stage("bootstrap").subscribe(function(a){i(e),a()}),d.each(function(c,d){var e=a(d),g=a('<a href=""></a><ul></ul>');g.eq(0).text(f),a.each(b,function(b,c){var d=a("<li></li>");g.eq(1).append(d);a("<a/>").text(c.name).attr("href","").click(function(a){a.preventDefault(),window.localStorage.theme=c.name,window.location.reload()}).appendTo(d)}),g.eq(1).append('<li class="divider" />');var h=a("<li/>"),i=a("<a>Use default</a>");i.click(function(a){a.preventDefault(),window.localStorage.removeItem("theme"),window.location.reload()}),h.append(i),g.eq(1).append(h),g.eq(1).append('<li class="divider" />'),g.eq(1).append('<li><a href="http://www.bootswatch.com">Powered by Bootswatch</a></li>'),e.replaceWith(g)})},i=function(b){window.localStorage.theme&&(b=a.extend({name:window.localStorage.theme},b),f(b))}}(jQuery),function(a){var b=a.md.prepareLink("platform.twitter.com/widgets.js"),c='!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="'+b+'";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");',d={name:"TwitterGimmick",version:a.md.version,once:function(){a.md.linkGimmick(this,"twitterfollow",e),a.md.registerScript(this,c,{license:"EXCEPTION",loadstage:"postgimmick",finishstage:"all_ready"})}};a.md.registerGimmick(d);var e=function(b){return b.each(function(b,c){var d,e=a(c),f=e.attr("href");if(f.indexOf("twitter.com")<=0){d=e.attr("href"),f=a.md.prepareLink("twitter.com/"+d),"@"===d[0]&&(d=d.substring(1));var g=a('<a href="'+f+'" class="twitter-follow-button" data-show-count="false" data-lang="en" data-show-screen-name="false">@'+d+"</a>");e.replaceWith(g)}})}}(jQuery),function(a){function b(){var b=a("a[href*=youtube\\.com]:empty, a[href*=youtu\\.be]:empty");b.each(function(){var b=a(this),c=b.attr("href");if(void 0!==c){var d=/.*(?:youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#\&\?]*).*/,e=c.match(d);if(e&&11===e[1].length){var f=e[1],g=a('<iframe class="md-external" frameborder="0" allowfullscreen></iframe>');g.attr("src","http://youtube.com/embed/"+f),b.replaceWith(g)}}})}var c={name:"youtube",load:function(){a.md.stage("gimmick").subscribe(function(a){b(),a()})}};a.md.registerGimmick(c)}(jQuery),function(a){"use strict";function b(b,c){var d={type:"class",style:"plain",direction:"LR",scale:"100"},e=a.extend({},d,c);return b.each(function(b,c){var d=a(c),f="http://yuml.me/diagram/",g=d.attr("href"),h=d.attr("title");h=h?h:"",g=g.replace(new RegExp("`","g"),"(").replace(new RegExp("´","g"),")"),f+=e.style+";dir:"+e.direction+";scale:"+e.scale+"/"+e.type+"/"+g;var i=a('<img src="'+f+'" title="'+h+'" alt="'+h+'">');d.replaceWith(i)})}var c={name:"yuml",version:a.md.version,once:function(){a.md.linkGimmick(this,"yuml",b),a.md.registerScript(this,"",{license:"LGPL",loadstage:"postgimmick",finishstage:"all_ready"})}};a.md.registerGimmick(c)}(jQuery);</script>
+
+
+/* Copyright (C) 1999 Masanao Izumo <iz@onicos.co.jp>
+ * Version: 1.0.1
+ * LastModified: Dec 25 1999
+ */
+
+/* Interface:
+ * data = zip_deflate(src);
+ */
+
+/* constant parameters */
+var zip_WSIZE = 32768;		// Sliding Window size
+var zip_STORED_BLOCK = 0;
+var zip_STATIC_TREES = 1;
+var zip_DYN_TREES    = 2;
+
+/* for deflate */
+var zip_DEFAULT_LEVEL = 6;
+var zip_FULL_SEARCH = true;
+var zip_INBUFSIZ = 32768;	// Input buffer size
+var zip_INBUF_EXTRA = 64;	// Extra buffer
+var zip_OUTBUFSIZ = 1024 * 8;
+var zip_window_size = 2 * zip_WSIZE;
+var zip_MIN_MATCH = 3;
+var zip_MAX_MATCH = 258;
+var zip_BITS = 16;
+// for SMALL_MEM
+var zip_LIT_BUFSIZE = 0x2000;
+var zip_HASH_BITS = 13;
+// for MEDIUM_MEM
+// var zip_LIT_BUFSIZE = 0x4000;
+// var zip_HASH_BITS = 14;
+// for BIG_MEM
+// var zip_LIT_BUFSIZE = 0x8000;
+// var zip_HASH_BITS = 15;
+if(zip_LIT_BUFSIZE > zip_INBUFSIZ)
+    alert("error: zip_INBUFSIZ is too small");
+if((zip_WSIZE<<1) > (1<<zip_BITS))
+    alert("error: zip_WSIZE is too large");
+if(zip_HASH_BITS > zip_BITS-1)
+    alert("error: zip_HASH_BITS is too large");
+if(zip_HASH_BITS < 8 || zip_MAX_MATCH != 258)
+    alert("error: Code too clever");
+var zip_DIST_BUFSIZE = zip_LIT_BUFSIZE;
+var zip_HASH_SIZE = 1 << zip_HASH_BITS;
+var zip_HASH_MASK = zip_HASH_SIZE - 1;
+var zip_WMASK = zip_WSIZE - 1;
+var zip_NIL = 0; // Tail of hash chains
+var zip_TOO_FAR = 4096;
+var zip_MIN_LOOKAHEAD = zip_MAX_MATCH + zip_MIN_MATCH + 1;
+var zip_MAX_DIST = zip_WSIZE - zip_MIN_LOOKAHEAD;
+var zip_SMALLEST = 1;
+var zip_MAX_BITS = 15;
+var zip_MAX_BL_BITS = 7;
+var zip_LENGTH_CODES = 29;
+var zip_LITERALS =256;
+var zip_END_BLOCK = 256;
+var zip_L_CODES = zip_LITERALS + 1 + zip_LENGTH_CODES;
+var zip_D_CODES = 30;
+var zip_BL_CODES = 19;
+var zip_REP_3_6 = 16;
+var zip_REPZ_3_10 = 17;
+var zip_REPZ_11_138 = 18;
+var zip_HEAP_SIZE = 2 * zip_L_CODES + 1;
+var zip_H_SHIFT = parseInt((zip_HASH_BITS + zip_MIN_MATCH - 1) /
+			   zip_MIN_MATCH);
+
+/* variables */
+var zip_free_queue;
+var zip_qhead, zip_qtail;
+var zip_initflag;
+var zip_outbuf = null;
+var zip_outcnt, zip_outoff;
+var zip_complete;
+var zip_window;
+var zip_d_buf;
+var zip_l_buf;
+var zip_prev;
+var zip_bi_buf;
+var zip_bi_valid;
+var zip_block_start;
+var zip_ins_h;
+var zip_hash_head;
+var zip_prev_match;
+var zip_match_available;
+var zip_match_length;
+var zip_prev_length;
+var zip_strstart;
+var zip_match_start;
+var zip_eofile;
+var zip_lookahead;
+var zip_max_chain_length;
+var zip_max_lazy_match;
+var zip_compr_level;
+var zip_good_match;
+var zip_nice_match;
+var zip_dyn_ltree;
+var zip_dyn_dtree;
+var zip_static_ltree;
+var zip_static_dtree;
+var zip_bl_tree;
+var zip_l_desc;
+var zip_d_desc;
+var zip_bl_desc;
+var zip_bl_count;
+var zip_heap;
+var zip_heap_len;
+var zip_heap_max;
+var zip_depth;
+var zip_length_code;
+var zip_dist_code;
+var zip_base_length;
+var zip_base_dist;
+var zip_flag_buf;
+var zip_last_lit;
+var zip_last_dist;
+var zip_last_flags;
+var zip_flags;
+var zip_flag_bit;
+var zip_opt_len;
+var zip_static_len;
+var zip_deflate_data;
+var zip_deflate_pos;
+
+/* constant tables */
+var zip_extra_lbits = new Array(
+    0,0,0,0,0,0,0,0,1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,0);
+var zip_extra_dbits = new Array(
+    0,0,0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11,12,12,13,13);
+var zip_extra_blbits = new Array(
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,3,7);
+var zip_bl_order = new Array(
+    16,17,18,0,8,7,9,6,10,5,11,4,12,3,13,2,14,1,15);
+var zip_configuration_table = new Array(
+	new zip_DeflateConfiguration(0,    0,   0,    0),
+	new zip_DeflateConfiguration(4,    4,   8,    4),
+	new zip_DeflateConfiguration(4,    5,  16,    8),
+	new zip_DeflateConfiguration(4,    6,  32,   32),
+	new zip_DeflateConfiguration(4,    4,  16,   16),
+	new zip_DeflateConfiguration(8,   16,  32,   32),
+	new zip_DeflateConfiguration(8,   16, 128,  128),
+	new zip_DeflateConfiguration(8,   32, 128,  256),
+	new zip_DeflateConfiguration(32, 128, 258, 1024),
+	new zip_DeflateConfiguration(32, 258, 258, 4096));
+
+/* objects (deflate) */
+
+function zip_DeflateCT() {
+    this.fc = 0; // frequency count or bit string
+    this.dl = 0; // father node in Huffman tree or length of bit string
+}
+
+function zip_DeflateTreeDesc() {
+    this.dyn_tree = null;	// the dynamic tree
+    this.static_tree = null;	// corresponding static tree or NULL
+    this.extra_bits = null;	// extra bits for each code or NULL
+    this.extra_base = 0;	// base index for extra_bits
+    this.elems = 0;		// max number of elements in the tree
+    this.max_length = 0;	// max bit length for the codes
+    this.max_code = 0;		// largest code with non zero frequency
+}
+
+/* Values for max_lazy_match, good_match and max_chain_length, depending on
+ * the desired pack level (0..9). The values given below have been tuned to
+ * exclude worst case performance for pathological files. Better values may be
+ * found for specific files.
+ */
+function zip_DeflateConfiguration(a, b, c, d) {
+    this.good_length = a; // reduce lazy search above this match length
+    this.max_lazy = b;    // do not perform lazy search above this match length
+    this.nice_length = c; // quit search above this match length
+    this.max_chain = d;
+}
+
+function zip_DeflateBuffer() {
+    this.next = null;
+    this.len = 0;
+    this.ptr = new Array(zip_OUTBUFSIZ);
+    this.off = 0;
+}
+
+/* routines (deflate) */
+
+function zip_deflate_start(level) {
+    var i;
+
+    if(!level)
+	level = zip_DEFAULT_LEVEL;
+    else if(level < 1)
+	level = 1;
+    else if(level > 9)
+	level = 9;
+
+    zip_compr_level = level;
+    zip_initflag = false;
+    zip_eofile = false;
+    if(zip_outbuf != null)
+	return;
+
+    zip_free_queue = zip_qhead = zip_qtail = null;
+    zip_outbuf = new Array(zip_OUTBUFSIZ);
+    zip_window = new Array(zip_window_size);
+    zip_d_buf = new Array(zip_DIST_BUFSIZE);
+    zip_l_buf = new Array(zip_INBUFSIZ + zip_INBUF_EXTRA);
+    zip_prev = new Array(1 << zip_BITS);
+    zip_dyn_ltree = new Array(zip_HEAP_SIZE);
+    for(i = 0; i < zip_HEAP_SIZE; i++)
+	zip_dyn_ltree[i] = new zip_DeflateCT();
+    zip_dyn_dtree = new Array(2*zip_D_CODES+1);
+    for(i = 0; i < 2*zip_D_CODES+1; i++)
+	zip_dyn_dtree[i] = new zip_DeflateCT();
+    zip_static_ltree = new Array(zip_L_CODES+2);
+    for(i = 0; i < zip_L_CODES+2; i++)
+	zip_static_ltree[i] = new zip_DeflateCT();
+    zip_static_dtree = new Array(zip_D_CODES);
+    for(i = 0; i < zip_D_CODES; i++)
+	zip_static_dtree[i] = new zip_DeflateCT();
+    zip_bl_tree = new Array(2*zip_BL_CODES+1);
+    for(i = 0; i < 2*zip_BL_CODES+1; i++)
+	zip_bl_tree[i] = new zip_DeflateCT();
+    zip_l_desc = new zip_DeflateTreeDesc();
+    zip_d_desc = new zip_DeflateTreeDesc();
+    zip_bl_desc = new zip_DeflateTreeDesc();
+    zip_bl_count = new Array(zip_MAX_BITS+1);
+    zip_heap = new Array(2*zip_L_CODES+1);
+    zip_depth = new Array(2*zip_L_CODES+1);
+    zip_length_code = new Array(zip_MAX_MATCH-zip_MIN_MATCH+1);
+    zip_dist_code = new Array(512);
+    zip_base_length = new Array(zip_LENGTH_CODES);
+    zip_base_dist = new Array(zip_D_CODES);
+    zip_flag_buf = new Array(parseInt(zip_LIT_BUFSIZE / 8));
+}
+
+function zip_deflate_end() {
+    zip_free_queue = zip_qhead = zip_qtail = null;
+    zip_outbuf = null;
+    zip_window = null;
+    zip_d_buf = null;
+    zip_l_buf = null;
+    zip_prev = null;
+    zip_dyn_ltree = null;
+    zip_dyn_dtree = null;
+    zip_static_ltree = null;
+    zip_static_dtree = null;
+    zip_bl_tree = null;
+    zip_l_desc = null;
+    zip_d_desc = null;
+    zip_bl_desc = null;
+    zip_bl_count = null;
+    zip_heap = null;
+    zip_depth = null;
+    zip_length_code = null;
+    zip_dist_code = null;
+    zip_base_length = null;
+    zip_base_dist = null;
+    zip_flag_buf = null;
+}
+
+function zip_reuse_queue(p) {
+    p.next = zip_free_queue;
+    zip_free_queue = p;
+}
+
+function zip_new_queue() {
+    var p;
+
+    if(zip_free_queue != null)
+    {
+	p = zip_free_queue;
+	zip_free_queue = zip_free_queue.next;
+    }
+    else
+	p = new zip_DeflateBuffer();
+    p.next = null;
+    p.len = p.off = 0;
+
+    return p;
+}
+
+function zip_head1(i) {
+    return zip_prev[zip_WSIZE + i];
+}
+
+function zip_head2(i, val) {
+    return zip_prev[zip_WSIZE + i] = val;
+}
+
+/* put_byte is used for the compressed output, put_ubyte for the
+ * uncompressed output. However unlzw() uses window for its
+ * suffix table instead of its output buffer, so it does not use put_ubyte
+ * (to be cleaned up).
+ */
+function zip_put_byte(c) {
+    zip_outbuf[zip_outoff + zip_outcnt++] = c;
+    if(zip_outoff + zip_outcnt == zip_OUTBUFSIZ)
+	zip_qoutbuf();
+}
+
+/* Output a 16 bit value, lsb first */
+function zip_put_short(w) {
+    w &= 0xffff;
+    if(zip_outoff + zip_outcnt < zip_OUTBUFSIZ - 2) {
+	zip_outbuf[zip_outoff + zip_outcnt++] = (w & 0xff);
+	zip_outbuf[zip_outoff + zip_outcnt++] = (w >>> 8);
+    } else {
+	zip_put_byte(w & 0xff);
+	zip_put_byte(w >>> 8);
+    }
+}
+
+/* ==========================================================================
+ * Insert string s in the dictionary and set match_head to the previous head
+ * of the hash chain (the most recent string with same hash key). Return
+ * the previous length of the hash chain.
+ * IN  assertion: all calls to to INSERT_STRING are made with consecutive
+ *    input characters and the first MIN_MATCH bytes of s are valid
+ *    (except for the last MIN_MATCH-1 bytes of the input file).
+ */
+function zip_INSERT_STRING() {
+    zip_ins_h = ((zip_ins_h << zip_H_SHIFT)
+		 ^ (zip_window[zip_strstart + zip_MIN_MATCH - 1] & 0xff))
+	& zip_HASH_MASK;
+    zip_hash_head = zip_head1(zip_ins_h);
+    zip_prev[zip_strstart & zip_WMASK] = zip_hash_head;
+    zip_head2(zip_ins_h, zip_strstart);
+}
+
+/* Send a code of the given tree. c and tree must not have side effects */
+function zip_SEND_CODE(c, tree) {
+    zip_send_bits(tree[c].fc, tree[c].dl);
+}
+
+/* Mapping from a distance to a distance code. dist is the distance - 1 and
+ * must not have side effects. dist_code[256] and dist_code[257] are never
+ * used.
+ */
+function zip_D_CODE(dist) {
+    return (dist < 256 ? zip_dist_code[dist]
+	    : zip_dist_code[256 + (dist>>7)]) & 0xff;
+}
+
+/* ==========================================================================
+ * Compares to subtrees, using the tree depth as tie breaker when
+ * the subtrees have equal frequency. This minimizes the worst case length.
+ */
+function zip_SMALLER(tree, n, m) {
+    return tree[n].fc < tree[m].fc ||
+      (tree[n].fc == tree[m].fc && zip_depth[n] <= zip_depth[m]);
+}
+
+/* ==========================================================================
+ * read string data
+ */
+function zip_read_buff(buff, offset, n) {
+    var i;
+    for(i = 0; i < n && zip_deflate_pos < zip_deflate_data.length; i++)
+	buff[offset + i] =
+	    zip_deflate_data.charCodeAt(zip_deflate_pos++) & 0xff;
+    return i;
+}
+
+/* ==========================================================================
+ * Initialize the "longest match" routines for a new file
+ */
+function zip_lm_init() {
+    var j;
+
+    /* Initialize the hash table. */
+    for(j = 0; j < zip_HASH_SIZE; j++)
+//	zip_head2(j, zip_NIL);
+	zip_prev[zip_WSIZE + j] = 0;
+    /* prev will be initialized on the fly */
+
+    /* Set the default configuration parameters:
+     */
+    zip_max_lazy_match = zip_configuration_table[zip_compr_level].max_lazy;
+    zip_good_match     = zip_configuration_table[zip_compr_level].good_length;
+    if(!zip_FULL_SEARCH)
+	zip_nice_match = zip_configuration_table[zip_compr_level].nice_length;
+    zip_max_chain_length = zip_configuration_table[zip_compr_level].max_chain;
+
+    zip_strstart = 0;
+    zip_block_start = 0;
+
+    zip_lookahead = zip_read_buff(zip_window, 0, 2 * zip_WSIZE);
+    if(zip_lookahead <= 0) {
+	zip_eofile = true;
+	zip_lookahead = 0;
+	return;
+    }
+    zip_eofile = false;
+    /* Make sure that we always have enough lookahead. This is important
+     * if input comes from a device such as a tty.
+     */
+    while(zip_lookahead < zip_MIN_LOOKAHEAD && !zip_eofile)
+	zip_fill_window();
+
+    /* If lookahead < MIN_MATCH, ins_h is garbage, but this is
+     * not important since only literal bytes will be emitted.
+     */
+    zip_ins_h = 0;
+    for(j = 0; j < zip_MIN_MATCH - 1; j++) {
+//      UPDATE_HASH(ins_h, window[j]);
+	zip_ins_h = ((zip_ins_h << zip_H_SHIFT) ^ (zip_window[j] & 0xff)) & zip_HASH_MASK;
+    }
+}
+
+/* ==========================================================================
+ * Set match_start to the longest match starting at the given string and
+ * return its length. Matches shorter or equal to prev_length are discarded,
+ * in which case the result is equal to prev_length and match_start is
+ * garbage.
+ * IN assertions: cur_match is the head of the hash chain for the current
+ *   string (strstart) and its distance is <= MAX_DIST, and prev_length >= 1
+ */
+function zip_longest_match(cur_match) {
+    var chain_length = zip_max_chain_length; // max hash chain length
+    var scanp = zip_strstart; // current string
+    var matchp;		// matched string
+    var len;		// length of current match
+    var best_len = zip_prev_length;	// best match length so far
+
+    /* Stop when cur_match becomes <= limit. To simplify the code,
+     * we prevent matches with the string of window index 0.
+     */
+    var limit = (zip_strstart > zip_MAX_DIST ? zip_strstart - zip_MAX_DIST : zip_NIL);
+
+    var strendp = zip_strstart + zip_MAX_MATCH;
+    var scan_end1 = zip_window[scanp + best_len - 1];
+    var scan_end  = zip_window[scanp + best_len];
+
+    /* Do not waste too much time if we already have a good match: */
+    if(zip_prev_length >= zip_good_match)
+	chain_length >>= 2;
+
+//  Assert(encoder->strstart <= window_size-MIN_LOOKAHEAD, "insufficient lookahead");
+
+    do {
+//    Assert(cur_match < encoder->strstart, "no future");
+	matchp = cur_match;
+
+	/* Skip to next match if the match length cannot increase
+	    * or if the match length is less than 2:
+	*/
+	if(zip_window[matchp + best_len]	!= scan_end  ||
+	   zip_window[matchp + best_len - 1]	!= scan_end1 ||
+	   zip_window[matchp]			!= zip_window[scanp] ||
+	   zip_window[++matchp]			!= zip_window[scanp + 1]) {
+	    continue;
+	}
+
+	/* The check at best_len-1 can be removed because it will be made
+         * again later. (This heuristic is not always a win.)
+         * It is not necessary to compare scan[2] and match[2] since they
+         * are always equal when the other bytes match, given that
+         * the hash keys are equal and that HASH_BITS >= 8.
+         */
+	scanp += 2;
+	matchp++;
+
+	/* We check for insufficient lookahead only every 8th comparison;
+         * the 256th check will be made at strstart+258.
+         */
+	do {
+	} while(zip_window[++scanp] == zip_window[++matchp] &&
+		zip_window[++scanp] == zip_window[++matchp] &&
+		zip_window[++scanp] == zip_window[++matchp] &&
+		zip_window[++scanp] == zip_window[++matchp] &&
+		zip_window[++scanp] == zip_window[++matchp] &&
+		zip_window[++scanp] == zip_window[++matchp] &&
+		zip_window[++scanp] == zip_window[++matchp] &&
+		zip_window[++scanp] == zip_window[++matchp] &&
+		scanp < strendp);
+
+      len = zip_MAX_MATCH - (strendp - scanp);
+      scanp = strendp - zip_MAX_MATCH;
+
+      if(len > best_len) {
+	  zip_match_start = cur_match;
+	  best_len = len;
+	  if(zip_FULL_SEARCH) {
+	      if(len >= zip_MAX_MATCH) break;
+	  } else {
+	      if(len >= zip_nice_match) break;
+	  }
+
+	  scan_end1  = zip_window[scanp + best_len-1];
+	  scan_end   = zip_window[scanp + best_len];
+      }
+    } while((cur_match = zip_prev[cur_match & zip_WMASK]) > limit
+	    && --chain_length != 0);
+
+    return best_len;
+}
+
+/* ==========================================================================
+ * Fill the window when the lookahead becomes insufficient.
+ * Updates strstart and lookahead, and sets eofile if end of input file.
+ * IN assertion: lookahead < MIN_LOOKAHEAD && strstart + lookahead > 0
+ * OUT assertions: at least one byte has been read, or eofile is set;
+ *    file reads are performed for at least two bytes (required for the
+ *    translate_eol option).
+ */
+function zip_fill_window() {
+    var n, m;
+
+    // Amount of free space at the end of the window.
+    var more = zip_window_size - zip_lookahead - zip_strstart;
+
+    /* If the window is almost full and there is insufficient lookahead,
+     * move the upper half to the lower one to make room in the upper half.
+     */
+    if(more == -1) {
+	/* Very unlikely, but possible on 16 bit machine if strstart == 0
+         * and lookahead == 1 (input done one byte at time)
+         */
+	more--;
+    } else if(zip_strstart >= zip_WSIZE + zip_MAX_DIST) {
+	/* By the IN assertion, the window is not empty so we can't confuse
+         * more == 0 with more == 64K on a 16 bit machine.
+         */
+//	Assert(window_size == (ulg)2*WSIZE, "no sliding with BIG_MEM");
+
+//	System.arraycopy(window, WSIZE, window, 0, WSIZE);
+	for(n = 0; n < zip_WSIZE; n++)
+	    zip_window[n] = zip_window[n + zip_WSIZE];
+      
+	zip_match_start -= zip_WSIZE;
+	zip_strstart    -= zip_WSIZE; /* we now have strstart >= MAX_DIST: */
+	zip_block_start -= zip_WSIZE;
+
+	for(n = 0; n < zip_HASH_SIZE; n++) {
+	    m = zip_head1(n);
+	    zip_head2(n, m >= zip_WSIZE ? m - zip_WSIZE : zip_NIL);
+	}
+	for(n = 0; n < zip_WSIZE; n++) {
+	    /* If n is not on any hash chain, prev[n] is garbage but
+	     * its value will never be used.
+	     */
+	    m = zip_prev[n];
+	    zip_prev[n] = (m >= zip_WSIZE ? m - zip_WSIZE : zip_NIL);
+	}
+	more += zip_WSIZE;
+    }
+    // At this point, more >= 2
+    if(!zip_eofile) {
+	n = zip_read_buff(zip_window, zip_strstart + zip_lookahead, more);
+	if(n <= 0)
+	    zip_eofile = true;
+	else
+	    zip_lookahead += n;
+    }
+}
+
+/* ==========================================================================
+ * Processes a new input file and return its compressed length. This
+ * function does not perform lazy evaluationof matches and inserts
+ * new strings in the dictionary only for unmatched strings or for short
+ * matches. It is used only for the fast compression options.
+ */
+function zip_deflate_fast() {
+    while(zip_lookahead != 0 && zip_qhead == null) {
+	var flush; // set if current block must be flushed
+
+	/* Insert the string window[strstart .. strstart+2] in the
+	 * dictionary, and set hash_head to the head of the hash chain:
+	 */
+	zip_INSERT_STRING();
+
+	/* Find the longest match, discarding those <= prev_length.
+	 * At this point we have always match_length < MIN_MATCH
+	 */
+	if(zip_hash_head != zip_NIL &&
+	   zip_strstart - zip_hash_head <= zip_MAX_DIST) {
+	    /* To simplify the code, we prevent matches with the string
+	     * of window index 0 (in particular we have to avoid a match
+	     * of the string with itself at the start of the input file).
+	     */
+	    zip_match_length = zip_longest_match(zip_hash_head);
+	    /* longest_match() sets match_start */
+	    if(zip_match_length > zip_lookahead)
+		zip_match_length = zip_lookahead;
+	}
+	if(zip_match_length >= zip_MIN_MATCH) {
+//	    check_match(strstart, match_start, match_length);
+
+	    flush = zip_ct_tally(zip_strstart - zip_match_start,
+				 zip_match_length - zip_MIN_MATCH);
+	    zip_lookahead -= zip_match_length;
+
+	    /* Insert new strings in the hash table only if the match length
+	     * is not too large. This saves time but degrades compression.
+	     */
+	    if(zip_match_length <= zip_max_lazy_match) {
+		zip_match_length--; // string at strstart already in hash table
+		do {
+		    zip_strstart++;
+		    zip_INSERT_STRING();
+		    /* strstart never exceeds WSIZE-MAX_MATCH, so there are
+		     * always MIN_MATCH bytes ahead. If lookahead < MIN_MATCH
+		     * these bytes are garbage, but it does not matter since
+		     * the next lookahead bytes will be emitted as literals.
+		     */
+		} while(--zip_match_length != 0);
+		zip_strstart++;
+	    } else {
+		zip_strstart += zip_match_length;
+		zip_match_length = 0;
+		zip_ins_h = zip_window[zip_strstart] & 0xff;
+//		UPDATE_HASH(ins_h, window[strstart + 1]);
+		zip_ins_h = ((zip_ins_h<<zip_H_SHIFT) ^ (zip_window[zip_strstart + 1] & 0xff)) & zip_HASH_MASK;
+
+//#if MIN_MATCH != 3
+//		Call UPDATE_HASH() MIN_MATCH-3 more times
+//#endif
+
+	    }
+	} else {
+	    /* No match, output a literal byte */
+	    flush = zip_ct_tally(0, zip_window[zip_strstart] & 0xff);
+	    zip_lookahead--;
+	    zip_strstart++;
+	}
+	if(flush) {
+	    zip_flush_block(0);
+	    zip_block_start = zip_strstart;
+	}
+
+	/* Make sure that we always have enough lookahead, except
+	 * at the end of the input file. We need MAX_MATCH bytes
+	 * for the next match, plus MIN_MATCH bytes to insert the
+	 * string following the next match.
+	 */
+	while(zip_lookahead < zip_MIN_LOOKAHEAD && !zip_eofile)
+	    zip_fill_window();
+    }
+}
+
+function zip_deflate_better() {
+    /* Process the input block. */
+    while(zip_lookahead != 0 && zip_qhead == null) {
+	/* Insert the string window[strstart .. strstart+2] in the
+	 * dictionary, and set hash_head to the head of the hash chain:
+	 */
+	zip_INSERT_STRING();
+
+	/* Find the longest match, discarding those <= prev_length.
+	 */
+	zip_prev_length = zip_match_length;
+	zip_prev_match = zip_match_start;
+	zip_match_length = zip_MIN_MATCH - 1;
+
+	if(zip_hash_head != zip_NIL &&
+	   zip_prev_length < zip_max_lazy_match &&
+	   zip_strstart - zip_hash_head <= zip_MAX_DIST) {
+	    /* To simplify the code, we prevent matches with the string
+	     * of window index 0 (in particular we have to avoid a match
+	     * of the string with itself at the start of the input file).
+	     */
+	    zip_match_length = zip_longest_match(zip_hash_head);
+	    /* longest_match() sets match_start */
+	    if(zip_match_length > zip_lookahead)
+		zip_match_length = zip_lookahead;
+
+	    /* Ignore a length 3 match if it is too distant: */
+	    if(zip_match_length == zip_MIN_MATCH &&
+	       zip_strstart - zip_match_start > zip_TOO_FAR) {
+		/* If prev_match is also MIN_MATCH, match_start is garbage
+		 * but we will ignore the current match anyway.
+		 */
+		zip_match_length--;
+	    }
+	}
+	/* If there was a match at the previous step and the current
+	 * match is not better, output the previous match:
+	 */
+	if(zip_prev_length >= zip_MIN_MATCH &&
+	   zip_match_length <= zip_prev_length) {
+	    var flush; // set if current block must be flushed
+
+//	    check_match(strstart - 1, prev_match, prev_length);
+	    flush = zip_ct_tally(zip_strstart - 1 - zip_prev_match,
+				 zip_prev_length - zip_MIN_MATCH);
+
+	    /* Insert in hash table all strings up to the end of the match.
+	     * strstart-1 and strstart are already inserted.
+	     */
+	    zip_lookahead -= zip_prev_length - 1;
+	    zip_prev_length -= 2;
+	    do {
+		zip_strstart++;
+		zip_INSERT_STRING();
+		/* strstart never exceeds WSIZE-MAX_MATCH, so there are
+		 * always MIN_MATCH bytes ahead. If lookahead < MIN_MATCH
+		 * these bytes are garbage, but it does not matter since the
+		 * next lookahead bytes will always be emitted as literals.
+		 */
+	    } while(--zip_prev_length != 0);
+	    zip_match_available = 0;
+	    zip_match_length = zip_MIN_MATCH - 1;
+	    zip_strstart++;
+	    if(flush) {
+		zip_flush_block(0);
+		zip_block_start = zip_strstart;
+	    }
+	} else if(zip_match_available != 0) {
+	    /* If there was no match at the previous position, output a
+	     * single literal. If there was a match but the current match
+	     * is longer, truncate the previous match to a single literal.
+	     */
+	    if(zip_ct_tally(0, zip_window[zip_strstart - 1] & 0xff)) {
+		zip_flush_block(0);
+		zip_block_start = zip_strstart;
+	    }
+	    zip_strstart++;
+	    zip_lookahead--;
+	} else {
+	    /* There is no previous match to compare with, wait for
+	     * the next step to decide.
+	     */
+	    zip_match_available = 1;
+	    zip_strstart++;
+	    zip_lookahead--;
+	}
+
+	/* Make sure that we always have enough lookahead, except
+	 * at the end of the input file. We need MAX_MATCH bytes
+	 * for the next match, plus MIN_MATCH bytes to insert the
+	 * string following the next match.
+	 */
+	while(zip_lookahead < zip_MIN_LOOKAHEAD && !zip_eofile)
+	    zip_fill_window();
+    }
+}
+
+function zip_init_deflate() {
+    if(zip_eofile)
+	return;
+    zip_bi_buf = 0;
+    zip_bi_valid = 0;
+    zip_ct_init();
+    zip_lm_init();
+
+    zip_qhead = null;
+    zip_outcnt = 0;
+    zip_outoff = 0;
+
+    if(zip_compr_level <= 3)
+    {
+	zip_prev_length = zip_MIN_MATCH - 1;
+	zip_match_length = 0;
+    }
+    else
+    {
+	zip_match_length = zip_MIN_MATCH - 1;
+	zip_match_available = 0;
+    }
+
+    zip_complete = false;
+}
+
+/* ==========================================================================
+ * Same as above, but achieves better compression. We use a lazy
+ * evaluation for matches: a match is finally adopted only if there is
+ * no better match at the next window position.
+ */
+function zip_deflate_internal(buff, off, buff_size) {
+    var n;
+
+    if(!zip_initflag)
+    {
+	zip_init_deflate();
+	zip_initflag = true;
+	if(zip_lookahead == 0) { // empty
+	    zip_complete = true;
+	    return 0;
+	}
+    }
+
+    if((n = zip_qcopy(buff, off, buff_size)) == buff_size)
+	return buff_size;
+
+    if(zip_complete)
+	return n;
+
+    if(zip_compr_level <= 3) // optimized for speed
+	zip_deflate_fast();
+    else
+	zip_deflate_better();
+    if(zip_lookahead == 0) {
+	if(zip_match_available != 0)
+	    zip_ct_tally(0, zip_window[zip_strstart - 1] & 0xff);
+	zip_flush_block(1);
+	zip_complete = true;
+    }
+    return n + zip_qcopy(buff, n + off, buff_size - n);
+}
+
+function zip_qcopy(buff, off, buff_size) {
+    var n, i, j;
+
+    n = 0;
+    while(zip_qhead != null && n < buff_size)
+    {
+	i = buff_size - n;
+	if(i > zip_qhead.len)
+	    i = zip_qhead.len;
+//      System.arraycopy(qhead.ptr, qhead.off, buff, off + n, i);
+	for(j = 0; j < i; j++)
+	    buff[off + n + j] = zip_qhead.ptr[zip_qhead.off + j];
+	
+	zip_qhead.off += i;
+	zip_qhead.len -= i;
+	n += i;
+	if(zip_qhead.len == 0) {
+	    var p;
+	    p = zip_qhead;
+	    zip_qhead = zip_qhead.next;
+	    zip_reuse_queue(p);
+	}
+    }
+
+    if(n == buff_size)
+	return n;
+
+    if(zip_outoff < zip_outcnt) {
+	i = buff_size - n;
+	if(i > zip_outcnt - zip_outoff)
+	    i = zip_outcnt - zip_outoff;
+	// System.arraycopy(outbuf, outoff, buff, off + n, i);
+	for(j = 0; j < i; j++)
+	    buff[off + n + j] = zip_outbuf[zip_outoff + j];
+	zip_outoff += i;
+	n += i;
+	if(zip_outcnt == zip_outoff)
+	    zip_outcnt = zip_outoff = 0;
+    }
+    return n;
+}
+
+/* ==========================================================================
+ * Allocate the match buffer, initialize the various tables and save the
+ * location of the internal file attribute (ascii/binary) and method
+ * (DEFLATE/STORE).
+ */
+function zip_ct_init() {
+    var n;	// iterates over tree elements
+    var bits;	// bit counter
+    var length;	// length value
+    var code;	// code value
+    var dist;	// distance index
+
+    if(zip_static_dtree[0].dl != 0) return; // ct_init already called
+
+    zip_l_desc.dyn_tree		= zip_dyn_ltree;
+    zip_l_desc.static_tree	= zip_static_ltree;
+    zip_l_desc.extra_bits	= zip_extra_lbits;
+    zip_l_desc.extra_base	= zip_LITERALS + 1;
+    zip_l_desc.elems		= zip_L_CODES;
+    zip_l_desc.max_length	= zip_MAX_BITS;
+    zip_l_desc.max_code		= 0;
+
+    zip_d_desc.dyn_tree		= zip_dyn_dtree;
+    zip_d_desc.static_tree	= zip_static_dtree;
+    zip_d_desc.extra_bits	= zip_extra_dbits;
+    zip_d_desc.extra_base	= 0;
+    zip_d_desc.elems		= zip_D_CODES;
+    zip_d_desc.max_length	= zip_MAX_BITS;
+    zip_d_desc.max_code		= 0;
+
+    zip_bl_desc.dyn_tree	= zip_bl_tree;
+    zip_bl_desc.static_tree	= null;
+    zip_bl_desc.extra_bits	= zip_extra_blbits;
+    zip_bl_desc.extra_base	= 0;
+    zip_bl_desc.elems		= zip_BL_CODES;
+    zip_bl_desc.max_length	= zip_MAX_BL_BITS;
+    zip_bl_desc.max_code	= 0;
+
+    // Initialize the mapping length (0..255) -> length code (0..28)
+    length = 0;
+    for(code = 0; code < zip_LENGTH_CODES-1; code++) {
+	zip_base_length[code] = length;
+	for(n = 0; n < (1<<zip_extra_lbits[code]); n++)
+	    zip_length_code[length++] = code;
+    }
+    // Assert (length == 256, "ct_init: length != 256");
+
+    /* Note that the length 255 (match length 258) can be represented
+     * in two different ways: code 284 + 5 bits or code 285, so we
+     * overwrite length_code[255] to use the best encoding:
+     */
+    zip_length_code[length-1] = code;
+
+    /* Initialize the mapping dist (0..32K) -> dist code (0..29) */
+    dist = 0;
+    for(code = 0 ; code < 16; code++) {
+	zip_base_dist[code] = dist;
+	for(n = 0; n < (1<<zip_extra_dbits[code]); n++) {
+	    zip_dist_code[dist++] = code;
+	}
+    }
+    // Assert (dist == 256, "ct_init: dist != 256");
+    dist >>= 7; // from now on, all distances are divided by 128
+    for( ; code < zip_D_CODES; code++) {
+	zip_base_dist[code] = dist << 7;
+	for(n = 0; n < (1<<(zip_extra_dbits[code]-7)); n++)
+	    zip_dist_code[256 + dist++] = code;
+    }
+    // Assert (dist == 256, "ct_init: 256+dist != 512");
+
+    // Construct the codes of the static literal tree
+    for(bits = 0; bits <= zip_MAX_BITS; bits++)
+	zip_bl_count[bits] = 0;
+    n = 0;
+    while(n <= 143) { zip_static_ltree[n++].dl = 8; zip_bl_count[8]++; }
+    while(n <= 255) { zip_static_ltree[n++].dl = 9; zip_bl_count[9]++; }
+    while(n <= 279) { zip_static_ltree[n++].dl = 7; zip_bl_count[7]++; }
+    while(n <= 287) { zip_static_ltree[n++].dl = 8; zip_bl_count[8]++; }
+    /* Codes 286 and 287 do not exist, but we must include them in the
+     * tree construction to get a canonical Huffman tree (longest code
+     * all ones)
+     */
+    zip_gen_codes(zip_static_ltree, zip_L_CODES + 1);
+
+    /* The static distance tree is trivial: */
+    for(n = 0; n < zip_D_CODES; n++) {
+	zip_static_dtree[n].dl = 5;
+	zip_static_dtree[n].fc = zip_bi_reverse(n, 5);
+    }
+
+    // Initialize the first block of the first file:
+    zip_init_block();
+}
+
+/* ==========================================================================
+ * Initialize a new block.
+ */
+function zip_init_block() {
+    var n; // iterates over tree elements
+
+    // Initialize the trees.
+    for(n = 0; n < zip_L_CODES;  n++) zip_dyn_ltree[n].fc = 0;
+    for(n = 0; n < zip_D_CODES;  n++) zip_dyn_dtree[n].fc = 0;
+    for(n = 0; n < zip_BL_CODES; n++) zip_bl_tree[n].fc = 0;
+
+    zip_dyn_ltree[zip_END_BLOCK].fc = 1;
+    zip_opt_len = zip_static_len = 0;
+    zip_last_lit = zip_last_dist = zip_last_flags = 0;
+    zip_flags = 0;
+    zip_flag_bit = 1;
+}
+
+/* ==========================================================================
+ * Restore the heap property by moving down the tree starting at node k,
+ * exchanging a node with the smallest of its two sons if necessary, stopping
+ * when the heap property is re-established (each father smaller than its
+ * two sons).
+ */
+function zip_pqdownheap(
+    tree,	// the tree to restore
+    k) {	// node to move down
+    var v = zip_heap[k];
+    var j = k << 1;	// left son of k
+
+    while(j <= zip_heap_len) {
+	// Set j to the smallest of the two sons:
+	if(j < zip_heap_len &&
+	   zip_SMALLER(tree, zip_heap[j + 1], zip_heap[j]))
+	    j++;
+
+	// Exit if v is smaller than both sons
+	if(zip_SMALLER(tree, v, zip_heap[j]))
+	    break;
+
+	// Exchange v with the smallest son
+	zip_heap[k] = zip_heap[j];
+	k = j;
+
+	// And continue down the tree, setting j to the left son of k
+	j <<= 1;
+    }
+    zip_heap[k] = v;
+}
+
+/* ==========================================================================
+ * Compute the optimal bit lengths for a tree and update the total bit length
+ * for the current block.
+ * IN assertion: the fields freq and dad are set, heap[heap_max] and
+ *    above are the tree nodes sorted by increasing frequency.
+ * OUT assertions: the field len is set to the optimal bit length, the
+ *     array bl_count contains the frequencies for each bit length.
+ *     The length opt_len is updated; static_len is also updated if stree is
+ *     not null.
+ */
+function zip_gen_bitlen(desc) { // the tree descriptor
+    var tree		= desc.dyn_tree;
+    var extra		= desc.extra_bits;
+    var base		= desc.extra_base;
+    var max_code	= desc.max_code;
+    var max_length	= desc.max_length;
+    var stree		= desc.static_tree;
+    var h;		// heap index
+    var n, m;		// iterate over the tree elements
+    var bits;		// bit length
+    var xbits;		// extra bits
+    var f;		// frequency
+    var overflow = 0;	// number of elements with bit length too large
+
+    for(bits = 0; bits <= zip_MAX_BITS; bits++)
+	zip_bl_count[bits] = 0;
+
+    /* In a first pass, compute the optimal bit lengths (which may
+     * overflow in the case of the bit length tree).
+     */
+    tree[zip_heap[zip_heap_max]].dl = 0; // root of the heap
+
+    for(h = zip_heap_max + 1; h < zip_HEAP_SIZE; h++) {
+	n = zip_heap[h];
+	bits = tree[tree[n].dl].dl + 1;
+	if(bits > max_length) {
+	    bits = max_length;
+	    overflow++;
+	}
+	tree[n].dl = bits;
+	// We overwrite tree[n].dl which is no longer needed
+
+	if(n > max_code)
+	    continue; // not a leaf node
+
+	zip_bl_count[bits]++;
+	xbits = 0;
+	if(n >= base)
+	    xbits = extra[n - base];
+	f = tree[n].fc;
+	zip_opt_len += f * (bits + xbits);
+	if(stree != null)
+	    zip_static_len += f * (stree[n].dl + xbits);
+    }
+    if(overflow == 0)
+	return;
+
+    // This happens for example on obj2 and pic of the Calgary corpus
+
+    // Find the first bit length which could increase:
+    do {
+	bits = max_length - 1;
+	while(zip_bl_count[bits] == 0)
+	    bits--;
+	zip_bl_count[bits]--;		// move one leaf down the tree
+	zip_bl_count[bits + 1] += 2;	// move one overflow item as its brother
+	zip_bl_count[max_length]--;
+	/* The brother of the overflow item also moves one step up,
+	 * but this does not affect bl_count[max_length]
+	 */
+	overflow -= 2;
+    } while(overflow > 0);
+
+    /* Now recompute all bit lengths, scanning in increasing frequency.
+     * h is still equal to HEAP_SIZE. (It is simpler to reconstruct all
+     * lengths instead of fixing only the wrong ones. This idea is taken
+     * from 'ar' written by Haruhiko Okumura.)
+     */
+    for(bits = max_length; bits != 0; bits--) {
+	n = zip_bl_count[bits];
+	while(n != 0) {
+	    m = zip_heap[--h];
+	    if(m > max_code)
+		continue;
+	    if(tree[m].dl != bits) {
+		zip_opt_len += (bits - tree[m].dl) * tree[m].fc;
+		tree[m].fc = bits;
+	    }
+	    n--;
+	}
+    }
+}
+
+  /* ==========================================================================
+   * Generate the codes for a given tree and bit counts (which need not be
+   * optimal).
+   * IN assertion: the array bl_count contains the bit length statistics for
+   * the given tree and the field len is set for all tree elements.
+   * OUT assertion: the field code is set for all tree elements of non
+   *     zero code length.
+   */
+function zip_gen_codes(tree,	// the tree to decorate
+		   max_code) {	// largest code with non zero frequency
+    var next_code = new Array(zip_MAX_BITS+1); // next code value for each bit length
+    var code = 0;		// running code value
+    var bits;			// bit index
+    var n;			// code index
+
+    /* The distribution counts are first used to generate the code values
+     * without bit reversal.
+     */
+    for(bits = 1; bits <= zip_MAX_BITS; bits++) {
+	code = ((code + zip_bl_count[bits-1]) << 1);
+	next_code[bits] = code;
+    }
+
+    /* Check that the bit counts in bl_count are consistent. The last code
+     * must be all ones.
+     */
+//    Assert (code + encoder->bl_count[MAX_BITS]-1 == (1<<MAX_BITS)-1,
+//	    "inconsistent bit counts");
+//    Tracev((stderr,"\ngen_codes: max_code %d ", max_code));
+
+    for(n = 0; n <= max_code; n++) {
+	var len = tree[n].dl;
+	if(len == 0)
+	    continue;
+	// Now reverse the bits
+	tree[n].fc = zip_bi_reverse(next_code[len]++, len);
+
+//      Tracec(tree != static_ltree, (stderr,"\nn %3d %c l %2d c %4x (%x) ",
+//	  n, (isgraph(n) ? n : ' '), len, tree[n].fc, next_code[len]-1));
+    }
+}
+
+/* ==========================================================================
+ * Construct one Huffman tree and assigns the code bit strings and lengths.
+ * Update the total bit length for the current block.
+ * IN assertion: the field freq is set for all tree elements.
+ * OUT assertions: the fields len and code are set to the optimal bit length
+ *     and corresponding code. The length opt_len is updated; static_len is
+ *     also updated if stree is not null. The field max_code is set.
+ */
+function zip_build_tree(desc) { // the tree descriptor
+    var tree	= desc.dyn_tree;
+    var stree	= desc.static_tree;
+    var elems	= desc.elems;
+    var n, m;		// iterate over heap elements
+    var max_code = -1;	// largest code with non zero frequency
+    var node = elems;	// next internal node of the tree
+
+    /* Construct the initial heap, with least frequent element in
+     * heap[SMALLEST]. The sons of heap[n] are heap[2*n] and heap[2*n+1].
+     * heap[0] is not used.
+     */
+    zip_heap_len = 0;
+    zip_heap_max = zip_HEAP_SIZE;
+
+    for(n = 0; n < elems; n++) {
+	if(tree[n].fc != 0) {
+	    zip_heap[++zip_heap_len] = max_code = n;
+	    zip_depth[n] = 0;
+	} else
+	    tree[n].dl = 0;
+    }
+
+    /* The pkzip format requires that at least one distance code exists,
+     * and that at least one bit should be sent even if there is only one
+     * possible code. So to avoid special checks later on we force at least
+     * two codes of non zero frequency.
+     */
+    while(zip_heap_len < 2) {
+	var xnew = zip_heap[++zip_heap_len] = (max_code < 2 ? ++max_code : 0);
+	tree[xnew].fc = 1;
+	zip_depth[xnew] = 0;
+	zip_opt_len--;
+	if(stree != null)
+	    zip_static_len -= stree[xnew].dl;
+	// new is 0 or 1 so it does not have extra bits
+    }
+    desc.max_code = max_code;
+
+    /* The elements heap[heap_len/2+1 .. heap_len] are leaves of the tree,
+     * establish sub-heaps of increasing lengths:
+     */
+    for(n = zip_heap_len >> 1; n >= 1; n--)
+	zip_pqdownheap(tree, n);
+
+    /* Construct the Huffman tree by repeatedly combining the least two
+     * frequent nodes.
+     */
+    do {
+	n = zip_heap[zip_SMALLEST];
+	zip_heap[zip_SMALLEST] = zip_heap[zip_heap_len--];
+	zip_pqdownheap(tree, zip_SMALLEST);
+
+	m = zip_heap[zip_SMALLEST];  // m = node of next least frequency
+
+	// keep the nodes sorted by frequency
+	zip_heap[--zip_heap_max] = n;
+	zip_heap[--zip_heap_max] = m;
+
+	// Create a new node father of n and m
+	tree[node].fc = tree[n].fc + tree[m].fc;
+//	depth[node] = (char)(MAX(depth[n], depth[m]) + 1);
+	if(zip_depth[n] > zip_depth[m] + 1)
+	    zip_depth[node] = zip_depth[n];
+	else
+	    zip_depth[node] = zip_depth[m] + 1;
+	tree[n].dl = tree[m].dl = node;
+
+	// and insert the new node in the heap
+	zip_heap[zip_SMALLEST] = node++;
+	zip_pqdownheap(tree, zip_SMALLEST);
+
+    } while(zip_heap_len >= 2);
+
+    zip_heap[--zip_heap_max] = zip_heap[zip_SMALLEST];
+
+    /* At this point, the fields freq and dad are set. We can now
+     * generate the bit lengths.
+     */
+    zip_gen_bitlen(desc);
+
+    // The field len is now set, we can generate the bit codes
+    zip_gen_codes(tree, max_code);
+}
+
+/* ==========================================================================
+ * Scan a literal or distance tree to determine the frequencies of the codes
+ * in the bit length tree. Updates opt_len to take into account the repeat
+ * counts. (The contribution of the bit length codes will be added later
+ * during the construction of bl_tree.)
+ */
+function zip_scan_tree(tree,// the tree to be scanned
+		       max_code) {  // and its largest code of non zero frequency
+    var n;			// iterates over all tree elements
+    var prevlen = -1;		// last emitted length
+    var curlen;			// length of current code
+    var nextlen = tree[0].dl;	// length of next code
+    var count = 0;		// repeat count of the current code
+    var max_count = 7;		// max repeat count
+    var min_count = 4;		// min repeat count
+
+    if(nextlen == 0) {
+	max_count = 138;
+	min_count = 3;
+    }
+    tree[max_code + 1].dl = 0xffff; // guard
+
+    for(n = 0; n <= max_code; n++) {
+	curlen = nextlen;
+	nextlen = tree[n + 1].dl;
+	if(++count < max_count && curlen == nextlen)
+	    continue;
+	else if(count < min_count)
+	    zip_bl_tree[curlen].fc += count;
+	else if(curlen != 0) {
+	    if(curlen != prevlen)
+		zip_bl_tree[curlen].fc++;
+	    zip_bl_tree[zip_REP_3_6].fc++;
+	} else if(count <= 10)
+	    zip_bl_tree[zip_REPZ_3_10].fc++;
+	else
+	    zip_bl_tree[zip_REPZ_11_138].fc++;
+	count = 0; prevlen = curlen;
+	if(nextlen == 0) {
+	    max_count = 138;
+	    min_count = 3;
+	} else if(curlen == nextlen) {
+	    max_count = 6;
+	    min_count = 3;
+	} else {
+	    max_count = 7;
+	    min_count = 4;
+	}
+    }
+}
+
+  /* ==========================================================================
+   * Send a literal or distance tree in compressed form, using the codes in
+   * bl_tree.
+   */
+function zip_send_tree(tree, // the tree to be scanned
+		   max_code) { // and its largest code of non zero frequency
+    var n;			// iterates over all tree elements
+    var prevlen = -1;		// last emitted length
+    var curlen;			// length of current code
+    var nextlen = tree[0].dl;	// length of next code
+    var count = 0;		// repeat count of the current code
+    var max_count = 7;		// max repeat count
+    var min_count = 4;		// min repeat count
+
+    /* tree[max_code+1].dl = -1; */  /* guard already set */
+    if(nextlen == 0) {
+      max_count = 138;
+      min_count = 3;
+    }
+
+    for(n = 0; n <= max_code; n++) {
+	curlen = nextlen;
+	nextlen = tree[n+1].dl;
+	if(++count < max_count && curlen == nextlen) {
+	    continue;
+	} else if(count < min_count) {
+	    do { zip_SEND_CODE(curlen, zip_bl_tree); } while(--count != 0);
+	} else if(curlen != 0) {
+	    if(curlen != prevlen) {
+		zip_SEND_CODE(curlen, zip_bl_tree);
+		count--;
+	    }
+	    // Assert(count >= 3 && count <= 6, " 3_6?");
+	    zip_SEND_CODE(zip_REP_3_6, zip_bl_tree);
+	    zip_send_bits(count - 3, 2);
+	} else if(count <= 10) {
+	    zip_SEND_CODE(zip_REPZ_3_10, zip_bl_tree);
+	    zip_send_bits(count-3, 3);
+	} else {
+	    zip_SEND_CODE(zip_REPZ_11_138, zip_bl_tree);
+	    zip_send_bits(count-11, 7);
+	}
+	count = 0;
+	prevlen = curlen;
+	if(nextlen == 0) {
+	    max_count = 138;
+	    min_count = 3;
+	} else if(curlen == nextlen) {
+	    max_count = 6;
+	    min_count = 3;
+	} else {
+	    max_count = 7;
+	    min_count = 4;
+	}
+    }
+}
+
+/* ==========================================================================
+ * Construct the Huffman tree for the bit lengths and return the index in
+ * bl_order of the last bit length code to send.
+ */
+function zip_build_bl_tree() {
+    var max_blindex;  // index of last bit length code of non zero freq
+
+    // Determine the bit length frequencies for literal and distance trees
+    zip_scan_tree(zip_dyn_ltree, zip_l_desc.max_code);
+    zip_scan_tree(zip_dyn_dtree, zip_d_desc.max_code);
+
+    // Build the bit length tree:
+    zip_build_tree(zip_bl_desc);
+    /* opt_len now includes the length of the tree representations, except
+     * the lengths of the bit lengths codes and the 5+5+4 bits for the counts.
+     */
+
+    /* Determine the number of bit length codes to send. The pkzip format
+     * requires that at least 4 bit length codes be sent. (appnote.txt says
+     * 3 but the actual value used is 4.)
+     */
+    for(max_blindex = zip_BL_CODES-1; max_blindex >= 3; max_blindex--) {
+	if(zip_bl_tree[zip_bl_order[max_blindex]].dl != 0) break;
+    }
+    /* Update opt_len to include the bit length tree and counts */
+    zip_opt_len += 3*(max_blindex+1) + 5+5+4;
+//    Tracev((stderr, "\ndyn trees: dyn %ld, stat %ld",
+//	    encoder->opt_len, encoder->static_len));
+
+    return max_blindex;
+}
+
+/* ==========================================================================
+ * Send the header for a block using dynamic Huffman trees: the counts, the
+ * lengths of the bit length codes, the literal tree and the distance tree.
+ * IN assertion: lcodes >= 257, dcodes >= 1, blcodes >= 4.
+ */
+function zip_send_all_trees(lcodes, dcodes, blcodes) { // number of codes for each tree
+    var rank; // index in bl_order
+
+//    Assert (lcodes >= 257 && dcodes >= 1 && blcodes >= 4, "not enough codes");
+//    Assert (lcodes <= L_CODES && dcodes <= D_CODES && blcodes <= BL_CODES,
+//	    "too many codes");
+//    Tracev((stderr, "\nbl counts: "));
+    zip_send_bits(lcodes-257, 5); // not +255 as stated in appnote.txt
+    zip_send_bits(dcodes-1,   5);
+    zip_send_bits(blcodes-4,  4); // not -3 as stated in appnote.txt
+    for(rank = 0; rank < blcodes; rank++) {
+//      Tracev((stderr, "\nbl code %2d ", bl_order[rank]));
+	zip_send_bits(zip_bl_tree[zip_bl_order[rank]].dl, 3);
+    }
+
+    // send the literal tree
+    zip_send_tree(zip_dyn_ltree,lcodes-1);
+
+    // send the distance tree
+    zip_send_tree(zip_dyn_dtree,dcodes-1);
+}
+
+/* ==========================================================================
+ * Determine the best encoding for the current block: dynamic trees, static
+ * trees or store, and output the encoded block to the zip file.
+ */
+function zip_flush_block(eof) { // true if this is the last block for a file
+    var opt_lenb, static_lenb; // opt_len and static_len in bytes
+    var max_blindex;	// index of last bit length code of non zero freq
+    var stored_len;	// length of input block
+
+    stored_len = zip_strstart - zip_block_start;
+    zip_flag_buf[zip_last_flags] = zip_flags; // Save the flags for the last 8 items
+
+    // Construct the literal and distance trees
+    zip_build_tree(zip_l_desc);
+//    Tracev((stderr, "\nlit data: dyn %ld, stat %ld",
+//	    encoder->opt_len, encoder->static_len));
+
+    zip_build_tree(zip_d_desc);
+//    Tracev((stderr, "\ndist data: dyn %ld, stat %ld",
+//	    encoder->opt_len, encoder->static_len));
+    /* At this point, opt_len and static_len are the total bit lengths of
+     * the compressed block data, excluding the tree representations.
+     */
+
+    /* Build the bit length tree for the above two trees, and get the index
+     * in bl_order of the last bit length code to send.
+     */
+    max_blindex = zip_build_bl_tree();
+
+    // Determine the best encoding. Compute first the block length in bytes
+    opt_lenb	= (zip_opt_len   +3+7)>>3;
+    static_lenb = (zip_static_len+3+7)>>3;
+
+//    Trace((stderr, "\nopt %lu(%lu) stat %lu(%lu) stored %lu lit %u dist %u ",
+//	   opt_lenb, encoder->opt_len,
+//	   static_lenb, encoder->static_len, stored_len,
+//	   encoder->last_lit, encoder->last_dist));
+
+    if(static_lenb <= opt_lenb)
+	opt_lenb = static_lenb;
+    if(stored_len + 4 <= opt_lenb // 4: two words for the lengths
+       && zip_block_start >= 0) {
+	var i;
+
+	/* The test buf != NULL is only necessary if LIT_BUFSIZE > WSIZE.
+	 * Otherwise we can't have processed more than WSIZE input bytes since
+	 * the last block flush, because compression would have been
+	 * successful. If LIT_BUFSIZE <= WSIZE, it is never too late to
+	 * transform a block into a stored block.
+	 */
+	zip_send_bits((zip_STORED_BLOCK<<1)+eof, 3);  /* send block type */
+	zip_bi_windup();		 /* align on byte boundary */
+	zip_put_short(stored_len);
+	zip_put_short(~stored_len);
+
+      // copy block
+/*
+      p = &window[block_start];
+      for(i = 0; i < stored_len; i++)
+	put_byte(p[i]);
+*/
+	for(i = 0; i < stored_len; i++)
+	    zip_put_byte(zip_window[zip_block_start + i]);
+
+    } else if(static_lenb == opt_lenb) {
+	zip_send_bits((zip_STATIC_TREES<<1)+eof, 3);
+	zip_compress_block(zip_static_ltree, zip_static_dtree);
+    } else {
+	zip_send_bits((zip_DYN_TREES<<1)+eof, 3);
+	zip_send_all_trees(zip_l_desc.max_code+1,
+			   zip_d_desc.max_code+1,
+			   max_blindex+1);
+	zip_compress_block(zip_dyn_ltree, zip_dyn_dtree);
+    }
+
+    zip_init_block();
+
+    if(eof != 0)
+	zip_bi_windup();
+}
+
+/* ==========================================================================
+ * Save the match info and tally the frequency counts. Return true if
+ * the current block must be flushed.
+ */
+function zip_ct_tally(
+	dist, // distance of matched string
+	lc) { // match length-MIN_MATCH or unmatched char (if dist==0)
+    zip_l_buf[zip_last_lit++] = lc;
+    if(dist == 0) {
+	// lc is the unmatched char
+	zip_dyn_ltree[lc].fc++;
+    } else {
+	// Here, lc is the match length - MIN_MATCH
+	dist--;		    // dist = match distance - 1
+//      Assert((ush)dist < (ush)MAX_DIST &&
+//	     (ush)lc <= (ush)(MAX_MATCH-MIN_MATCH) &&
+//	     (ush)D_CODE(dist) < (ush)D_CODES,  "ct_tally: bad match");
+
+	zip_dyn_ltree[zip_length_code[lc]+zip_LITERALS+1].fc++;
+	zip_dyn_dtree[zip_D_CODE(dist)].fc++;
+
+	zip_d_buf[zip_last_dist++] = dist;
+	zip_flags |= zip_flag_bit;
+    }
+    zip_flag_bit <<= 1;
+
+    // Output the flags if they fill a byte
+    if((zip_last_lit & 7) == 0) {
+	zip_flag_buf[zip_last_flags++] = zip_flags;
+	zip_flags = 0;
+	zip_flag_bit = 1;
+    }
+    // Try to guess if it is profitable to stop the current block here
+    if(zip_compr_level > 2 && (zip_last_lit & 0xfff) == 0) {
+	// Compute an upper bound for the compressed length
+	var out_length = zip_last_lit * 8;
+	var in_length = zip_strstart - zip_block_start;
+	var dcode;
+
+	for(dcode = 0; dcode < zip_D_CODES; dcode++) {
+	    out_length += zip_dyn_dtree[dcode].fc * (5 + zip_extra_dbits[dcode]);
+	}
+	out_length >>= 3;
+//      Trace((stderr,"\nlast_lit %u, last_dist %u, in %ld, out ~%ld(%ld%%) ",
+//	     encoder->last_lit, encoder->last_dist, in_length, out_length,
+//	     100L - out_length*100L/in_length));
+	if(zip_last_dist < parseInt(zip_last_lit/2) &&
+	   out_length < parseInt(in_length/2))
+	    return true;
+    }
+    return (zip_last_lit == zip_LIT_BUFSIZE-1 ||
+	    zip_last_dist == zip_DIST_BUFSIZE);
+    /* We avoid equality with LIT_BUFSIZE because of wraparound at 64K
+     * on 16 bit machines and because stored blocks are restricted to
+     * 64K-1 bytes.
+     */
+}
+
+  /* ==========================================================================
+   * Send the block data compressed using the given Huffman trees
+   */
+function zip_compress_block(
+	ltree,	// literal tree
+	dtree) {	// distance tree
+    var dist;		// distance of matched string
+    var lc;		// match length or unmatched char (if dist == 0)
+    var lx = 0;		// running index in l_buf
+    var dx = 0;		// running index in d_buf
+    var fx = 0;		// running index in flag_buf
+    var flag = 0;	// current flags
+    var code;		// the code to send
+    var extra;		// number of extra bits to send
+
+    if(zip_last_lit != 0) do {
+	if((lx & 7) == 0)
+	    flag = zip_flag_buf[fx++];
+	lc = zip_l_buf[lx++] & 0xff;
+	if((flag & 1) == 0) {
+	    zip_SEND_CODE(lc, ltree); /* send a literal byte */
+//	Tracecv(isgraph(lc), (stderr," '%c' ", lc));
+	} else {
+	    // Here, lc is the match length - MIN_MATCH
+	    code = zip_length_code[lc];
+	    zip_SEND_CODE(code+zip_LITERALS+1, ltree); // send the length code
+	    extra = zip_extra_lbits[code];
+	    if(extra != 0) {
+		lc -= zip_base_length[code];
+		zip_send_bits(lc, extra); // send the extra length bits
+	    }
+	    dist = zip_d_buf[dx++];
+	    // Here, dist is the match distance - 1
+	    code = zip_D_CODE(dist);
+//	Assert (code < D_CODES, "bad d_code");
+
+	    zip_SEND_CODE(code, dtree);	  // send the distance code
+	    extra = zip_extra_dbits[code];
+	    if(extra != 0) {
+		dist -= zip_base_dist[code];
+		zip_send_bits(dist, extra);   // send the extra distance bits
+	    }
+	} // literal or match pair ?
+	flag >>= 1;
+    } while(lx < zip_last_lit);
+
+    zip_SEND_CODE(zip_END_BLOCK, ltree);
+}
+
+/* ==========================================================================
+ * Send a value on a given number of bits.
+ * IN assertion: length <= 16 and value fits in length bits.
+ */
+var zip_Buf_size = 16; // bit size of bi_buf
+function zip_send_bits(
+	value,	// value to send
+	length) {	// number of bits
+    /* If not enough room in bi_buf, use (valid) bits from bi_buf and
+     * (16 - bi_valid) bits from value, leaving (width - (16-bi_valid))
+     * unused bits in value.
+     */
+    if(zip_bi_valid > zip_Buf_size - length) {
+	zip_bi_buf |= (value << zip_bi_valid);
+	zip_put_short(zip_bi_buf);
+	zip_bi_buf = (value >> (zip_Buf_size - zip_bi_valid));
+	zip_bi_valid += length - zip_Buf_size;
+    } else {
+	zip_bi_buf |= value << zip_bi_valid;
+	zip_bi_valid += length;
+    }
+}
+
+/* ==========================================================================
+ * Reverse the first len bits of a code, using straightforward code (a faster
+ * method would use a table)
+ * IN assertion: 1 <= len <= 15
+ */
+function zip_bi_reverse(
+	code,	// the value to invert
+	len) {	// its bit length
+    var res = 0;
+    do {
+	res |= code & 1;
+	code >>= 1;
+	res <<= 1;
+    } while(--len > 0);
+    return res >> 1;
+}
+
+/* ==========================================================================
+ * Write out any remaining bits in an incomplete byte.
+ */
+function zip_bi_windup() {
+    if(zip_bi_valid > 8) {
+	zip_put_short(zip_bi_buf);
+    } else if(zip_bi_valid > 0) {
+	zip_put_byte(zip_bi_buf);
+    }
+    zip_bi_buf = 0;
+    zip_bi_valid = 0;
+}
+
+function zip_qoutbuf() {
+    if(zip_outcnt != 0) {
+	var q, i;
+	q = zip_new_queue();
+	if(zip_qhead == null)
+	    zip_qhead = zip_qtail = q;
+	else
+	    zip_qtail = zip_qtail.next = q;
+	q.len = zip_outcnt - zip_outoff;
+//      System.arraycopy(zip_outbuf, zip_outoff, q.ptr, 0, q.len);
+	for(i = 0; i < q.len; i++)
+	    q.ptr[i] = zip_outbuf[zip_outoff + i];
+	zip_outcnt = zip_outoff = 0;
+    }
+}
+
+function zip_deflate(str, level) {
+    var out, buff;
+    var i, j;
+
+    zip_deflate_data = str;
+    zip_deflate_pos = 0;
+    if(typeof level == "undefined")
+	level = zip_DEFAULT_LEVEL;
+    zip_deflate_start(level);
+
+    buff = new Array(1024);
+    out = "";
+    while((i = zip_deflate_internal(buff, 0, buff.length)) > 0) {
+	for(j = 0; j < i; j++)
+	    out += String.fromCharCode(buff[j]);
+    }
+    zip_deflate_data = null; // G.C.
+    return out;
+}
+                    
+                    
+/** Functions from https://plantuml.com/code-javascript-synchronous
+ */
+
+function encode64(data) {
+	r = "";
+	for (i=0; i<data.length; i+=3) {
+ 		if (i+2==data.length) {
+			r +=append3bytes(data.charCodeAt(i), data.charCodeAt(i+1), 0);
+		} else if (i+1==data.length) {
+			r += append3bytes(data.charCodeAt(i), 0, 0);
+		} else {
+			r += append3bytes(data.charCodeAt(i), data.charCodeAt(i+1),
+				data.charCodeAt(i+2));
+		}
+	}
+	return r;
+}
+
+function append3bytes(b1, b2, b3) {
+	c1 = b1 >> 2;
+	c2 = ((b1 & 0x3) << 4) | (b2 >> 4);
+	c3 = ((b2 & 0xF) << 2) | (b3 >> 6);
+	c4 = b3 & 0x3F;
+	r = "";
+	r += encode6bit(c1 & 0x3F);
+	r += encode6bit(c2 & 0x3F);
+	r += encode6bit(c3 & 0x3F);
+	r += encode6bit(c4 & 0x3F);
+	return r;
+}
+
+function encode6bit(b) {
+	if (b < 10) {
+ 		return String.fromCharCode(48 + b);
+	}
+	b -= 10;
+	if (b < 26) {
+ 		return String.fromCharCode(65 + b);
+	}
+	b -= 26;
+	if (b < 26) {
+ 		return String.fromCharCode(97 + b);
+	}
+	b -= 26;
+	if (b == 0) {
+ 		return '-';
+	}
+	if (b == 1) {
+ 		return '_';
+	}
+	return '?';
+}
+
+
+/* Copyright (C) 2020 David Svantesson
+ * MIT License
+ *
+ */
+
+function parsePlantumlCodeBlocks(plantumlServer = "http://www.plantuml.com/plantuml", htmlClass = "language-plantuml") {
+	var codeBlocks = document.getElementsByClassName(htmlClass);
+
+	for (var block_i = 0; block_i < codeBlocks.length; block_i++) {
+		block_string = codeBlocks[block_i].innerText
+		//UTF8
+		block_string = unescape(encodeURIComponent(block_string));
+		codeBlocks[block_i].innerHTML = "<img src=\"" + plantumlServer + "/img/" + encode64(zip_deflate(block_string, 9)) + "\">";
+	}
+	
+}
+
+
+
 <!-- END dist/MDwiki.min.js -->
 
 </head>
